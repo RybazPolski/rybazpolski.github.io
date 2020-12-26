@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papier Kamień Nożyce</title>
+    <style>
+        .choose{
+            width: 75px;
+            transition-duration: 0.2s;
+        }
+        th{
+            text-align: center;
+        }
+        td{
+            text-align: center;
+            width: 45%;
+        }
+        table{
+            width: 100%;
+            margin-left: 0%;
+        }
+        #roundWinner{
+            text-align: center;
+            text-decoration: underline;
+        }
+        #score{
+            text-align: center;
+        }
+        #gameWinner{
+            text-align: center;
+        }
+        #settings{
+            text-align: center;
+        }
+        body{
+            background-image: url(https://lh3.google.com/u/0/d/1a80zT4VJQW13N0Zb2rVsJwFLiHSoqKgl=w1868-h903-iv1);
+            background-size: cover;
+        }
+        #next{
+            transition-duration: 0.2s;
+        }
+        #next:hover{
+            background-color: green;
+            color: white;
+        }
+        #next:hover:disabled{
+            background-color: #E6E6E6;
+            color: #BABABA;
+        }
+        #reset{
+            transition-duration: 0.2s;
+        }
+        #reset:hover{
+            background-color: red;
+            color: black;
+        }
+        .choose:hover{
+            background-color: skyblue;
+            color: black;
+            text-decoration: underline;
+        }
+        .choose:hover:disabled{
+            background-color: #E6E6E6;
+            color: #BABABA;
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <script>
+        var random
+        var enemyChoice
+        var playerChoice
+        var results
+        var scorePlayer = 0
+        var scoreEnemy = 0
+        function wylosuj(min, max) {
+            min = Math.ceil(1);
+            max = Math.floor(3);
+            random = (Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+        function enemyChoosing(){
+            wylosuj()
+            switch(random){
+                case 1:
+                    enemyChoice = 'papier'
+                    document.getElementById('bot').src = "https://lh3.googleusercontent.com/fife/ABSRlIqq6TLJkKHfnB7P32vCqXedn35acUSNqNFK0L09lMjEjCUihL3xHBI28NtRQzeSY3gYtlriEynhpiAMB1nM9taq7h7jwyOy5r5MietWgQtdT68A4I_wgQJm1hlsbbq_kMjQkaAHw8mjHNNAbqmVjqWKIeUucRHMD1cYdSS6dT0jh1KapoJxdJ_QYASwO4PJBN1KFnmNphkwKOs-FBPi5_8I4qXqkIwHq5xvUz7A7W-qCCtyUtqdzPM1k17Pfzp9rCxq0jGvHyCY9Of2QLmr-FODsQXI02ophGrii4LJlDs3JSXER6-tFTJNi5wmuLzULo2Rjf1ZQIsnSaG8sryRjkxpsRAMcJ6m6XXkCnCih_osEdkPsW9G2OdjOa8Z4r14hTZi-of1sIUA6FBQhxmUvGx0YDx8kWnrRO3jv44NnWx6A0yYnm-J4xYMCIjvkUg1_De34Oonny8_idayFdOLx2rOLSbmnIthpqG9YQBggw9Y6yJvR-fEJKt8GbYaxfA20ZfzNi4U5CbYQ5gBU5lSWfge0MNasPFQCycwP7Fi4XtFGELJ2k7D0pRhWegHo4ePJAYr7kOXyJj11i1q1QbSAEAz2qr1OPPZm4AMtb9tj4VyrC48elqj4esaDe7wQATJdy9ryKCxCvMpYKjnJz_Kt3_T7D_pdPny9W0EKkuspsIm1XFF81hCtC6MqPaM6ZwifbNvXII7U4n-jgsTOaSC8dptGQ-v0nozFg=w1062-h903-ft";
+                    break;
+                case 2:
+                    enemyChoice = 'kamien'
+                    document.getElementById('bot').src = "https://lh3.googleusercontent.com/fife/ABSRlIqYyT_AAte_50TG6ZQnT7fw2Ee-UuIx7EBMOdN_bD1YtlMF6g6Ryadj7B4WkOBSUubLKPHZg9qF6LdHvZGCKmSwf3Gzq0UrivgbwVMp_AxP9LqNK3CunXGrM7SGGm62uru5cMcvF_-3JYY5H7fgKIJEa63z84mQTMChDxA-GRlrUAub_46K59sA3yfs_o1eSeirtWXYfsnySciDe1SRbV3v5EnVhC-Z1PqGtW4NIT_OhDStYXW3BQnJYlbin-r70uM8PpOv2MJKryx87y8QgJ5ZFUVvuJpElECDjcMHGDP30P1m6vlJTKO_v10oPXlVa06UOMm_bY8mPqYss1E6tL42OQvqGKXzdzMEJe_IlQClLIGPAFkKiZvstv-zDTyFFy0V1h13zVBY8YbJIOmR7wEhxDRdYsA9WekjnfhOfres0QEgDVoJicQj3mhxpPViXEzSVyVkGqpjKtNN8XtyR1_Ji66-DUvU2R4NeqehhJ6Q3gb3qVI6AGGUnWI1Ep7AYMO8NBhxNvNA7cpLEcmvbrLoln2pFnHfn9ZJRsQyB2KO1Np7EiD9ckgV5sM4Zh0fzOgIVq-xbcUqcJAK_kYXjpiI_u5WcRsbQkrUNkZVgL8HE6MLLS4WokNNCy7SSUyg3AcQQU8sMheREBXp-zjc4QtrGqdK3KUQNJeuJiabyaWcsoyQXqK3wdLAxPVa9e6EZ9yr20cpkzapWer-TYqVW1ZBLEYgM3FuSw=w1062-h903-ft";
+                    break;
+                case 3:
+                    enemyChoice = 'nozyce'
+                    document.getElementById('bot').src = "https://lh3.googleusercontent.com/fife/ABSRlIptb9cMH3keJmHcTDQWWEcHtvT_oYPzmZF4kFuuSGpCFoGfZoa-XK9bq9udHmEt_GZHkp25LyP3Il21Ufro8Krrr-SULsXZ6zV6a9Mcw6h8KKz1oX9f0h63zCQsAVZ-MnVfHYrkHPXbST31VcjAMH2-zw0tH36QI8WMN30Y7J8Ct7EroF-f5JJ5x6ZxwvINhuPLMightFqTwYhktwLx7V1z39bFytM1gBpBeJqngXhpvF9e0XM2NcXeKrUrmGzlfYSmrljaq8e50qPt5gilReDdK5Vf5jYJcqiz0Sng_UTjsyDV0mM7ITcWUkUJwc-Fan0amo64wWws-H16sN1Tz05Q7eZVKwaybAzi8oL25gtSDMQCRGJhLvruxgxdEABoLIo1QJhSutt5df2XTim8FL47TcBsqthO3ogGV0Rx6DRRvW4cDm0nZMJAk1h6IL4EZLDTHtjIBWmUiF39lJ0POiE1rIhlHoVf0MN5zErgbeAq7CkNTAou2EucLoeFlr64SSF7cp1te6D5ofNlxgoAFa_D7F0eWSKQsOK33ovlHC2K9L2pVDM6bve5Qpd8ZL4S-_u9L0vJ8awWjiMG8Mq-gxny222BS3DWeTzVc811_M1Jum9vSVwztAeJpgfqR3SiMBCqqX93Gu634d91Q4J91OwUuVtZTeUsdvp2qr38wTNMuPEAaOz3-6HfQmwbwisjQH1DlnZX9SaGVF4A-HHVSDuZhaIBMf86UA=w1062-h903-ft";
+                    break;
+            }
+            console.log("bot: "+enemyChoice)
+        }
+        function scoreUpdate() {
+            switch(results){
+                case 'win':
+                    scorePlayer=parseInt(scorePlayer+1)
+                    document.getElementById('roundWinner').innerHTML = "Wygrana!"
+                    break;
+                case 'lose':
+                    scoreEnemy=parseInt(scoreEnemy+1)
+                    document.getElementById('roundWinner').innerHTML = "Przegrana!"
+                    break;
+                default:
+                    document.getElementById('roundWinner').innerHTML = "Remis!"
+                    break;
+            }
+            document.getElementById('score').innerHTML = scorePlayer+":"+scoreEnemy
+            if(scorePlayer>scoreEnemy){
+                document.getElementById('gameWinner').innerHTML = "Wygrywasz"
+                document.getElementById('gameWinner').style.color = "green"
+            }else{
+                if(scorePlayer<scoreEnemy){
+                    document.getElementById('gameWinner').innerHTML = "Przegrywasz"
+                    document.getElementById('gameWinner').style.color = "red"
+                }else{
+                    document.getElementById('gameWinner').innerHTML = "Remisujesz"
+                    document.getElementById('gameWinner').style.color = "black"
+                }
+            }
+            console.log("score updated.")
+        }
+        function checkWinner() {
+            document.getElementById('papierButton').disabled = true
+            document.getElementById('kamienButton').disabled = true
+            document.getElementById('nozyceButton').disabled = true
+            document.getElementById('next').disabled = false
+            switch(playerChoice){
+                case 'papier':
+                    switch(enemyChoice){
+                        case 'papier':
+                            results = 'tie'
+                            break;
+                        case 'kamien':
+                            results = 'win'
+                            break;        
+                        case 'nozyce':
+                            results = "lose"
+                            break;            
+                    }
+                    console.log("result: "+results)
+                    break;
+                case 'kamien':
+                    switch(enemyChoice){
+                        case 'papier':
+                            results = 'lose'
+                            break;
+                        case 'kamien':
+                            results = 'tie'
+                            break;        
+                        case 'nozyce':
+                            results = "win"
+                            break;
+                    }
+                    console.log("result: "+results)
+                    break;
+                case 'nozyce':
+                    switch(enemyChoice){
+                        case 'papier':
+                            results = 'win'
+                            break;
+                        case 'kamien':
+                            results = 'lose'
+                            break;        
+                        case 'nozyce':
+                            results = "tie"
+                            break;
+                    }
+                    console.log("result: "+results)
+                    break;
+                    default: 
+                    console.log("error");
+            }
+            scoreUpdate()
+            console.log("--------------------")
+        }
+        function papier() {
+            playerChoice = 'papier'
+            document.getElementById('player').src = "https://lh3.googleusercontent.com/fife/ABSRlIpTO2PCW-u6ysSeVYtBNL3tdQt8FATJtVpctMbtzAGMkj7UnO3dzUh27gUkr08Z8fQk_DWdylGhxJME6U4mpKu3gIj1hvE6JR9bFhATyQDQOesi5_MSrvL7AgiZI9YpZChgnVZ2w-X4uDc8FQhUcyeGnWWFlY7RtLmcNXfuvosQPISVBr1M2kFZ4W84Aq8vnb6Ck1AtVaBLsYls20K-EiVB-EBGtnettvcpUXP6cTRwY3TOU5HbTMyRmF0x5e8825VenkZa0GetA6o7Wyg2oSqYODggweRm67HZAq3BHiKCVCX793kavtMvb9Rl-C0Dh79J7Qf_c7UdIWDG3nQB5wxfi2Dot5LFr59gQk7m86Yxn6pXxrK1kSb2xrQJpUs7-Lfosgj-TyMRjU4UhPIZYI09AWUI7EzP-XaVkQtzS-XyXDMds4Da41gos1NnMEocRsxQmlP1dSJFJqBdNGsauCPO1z6vVLGOCRNjX5R4vsSLOlpQrluhYHXpd9kbouuG47uP29O8CdFyTxMs-y2JGUuZY0NpyUsVViFL6kqWShaP2cImP_MD7tYjewZYe3d_wx9GBACwkyVAfVPU_wMjCMZF3_VYBBilQacpJsGCoe1FScWkiYgVtgJmxI4TwJ4I_pWCNlHlXpHlvSIjTu0umqsLqXPyZOn9WOxoLcocDWlADOjQ0gEl1uQZeKVXsLlnqeCzSd64wOqbKVJf-xWXx9jq9PWdduWGTQ=w1062-h903-ft";
+            console.log("player: "+playerChoice)
+            enemyChoosing()
+            checkWinner()
+        }
+        function kamien() {
+            playerChoice = 'kamien'
+            document.getElementById('player').src = "https://lh3.googleusercontent.com/fife/ABSRlIqPOjj6tE7LKJkv8wKGbnQaTEK7vlB5YLuP5ZtktuzhQ0y8OYbffKhpBSaxk-kl69mbcGQtw-WeJ3elc0Nu7kh3mWNbw9cjCeqllM7WXMXGHxerI1lX6DkjtsNua8wMkmHQORAgqb1HOqAIDseoFU3rzJ51BhC3wo8QlgBxg4QN7zkgBqi1xGNzwdvOFDHeAejn1f48p3F4bLYCWKOU7kw1M3pJsU-HZJsVXPwyjXbIg9eX57Mmu2ilWrvj3rFvtdnA73KW87oUWl6lf-vzoT1_jxnM6Jbw0loAC0MKwMxU_Ucy5wbcHmprnkKXYno0NUzoDRWTdYC3kM8lSt0yuoivpkg31xfTLu21gyM0BWESjBwOXBZrGgimh_ZCRjRIsFn5DVwSLOpnq4CXUPDn5WC0LdctxOsg4u9N-B7-kXzFQi6OqmofuqDIt_57kM1sUdSmjmXNvhUyzqwN-Pi_zf52St1xTUcfv02XKJUl2pO_XORN4pY5ieyhPHldy63uIuEXTYCR5pvvnBa5altsfD3ml-183EinnEZpABtdmIM9nBI7SVMd6CtbC61X6tBywOT4CCxE5aVqN89RiBJ9k0q9b3woBGwS7avTs1MgBshQvQ3pLJUY0lU-nqJn4cVmUTgDPpSIFlolFKcH8Wh3IZXzI35eHpPl3R8f5BlElS_NzaG5lmuZRESFRHASqvW2oNRL-Iq0BEFQH1h5spDk0k3A23aC793SXQ1BMg=w1868-h903-ft";
+            console.log("player: "+playerChoice)
+            enemyChoosing()
+            checkWinner()
+        }
+        function nozyce() {
+            playerChoice = 'nozyce'
+            document.getElementById('player').src = "https://lh3.googleusercontent.com/fife/ABSRlIpeQwRNAoCbJ9eLFKPVOs3v155IwT0WFoAXLiOup4GlSf3iJnnXNbofxBY-rUdguGoNMlYxWSQN_Lyq56XwZJ1eZYP53nZYWTNoj6IoRHNEBhI91vzW6txWmp3lUd2s3UO4z1Xn9DtuzEEs0Yiw7r4y8q6kEJ0VwpFjxAPdzSBgL_l9jjj6mpg7WcSdrGSkvSwAJPSGrfB7A5KR9MVsGYh50_Oja33ZsJSvkgw36Enp5RpoO3gRO7Q5IgdEquwL3woxMF11hd1N5rFA_1qxECzJtyD8zjkfUNS_uaauHcCYiqyaL-8mF7SpFKwImHAb6ZGZS6s60kPSlPBgWSUgiCLBij4-Yas1cf0tdDGdQ-8r4Ygrsc8yixjrKC8nWeowQu6HVmquN2UgVnfSj4d_feZ4Xsc6z5LwZfTESmciQsASo8tNCGPVTzZWC8GYCwDPPn9qd-PIHb11t322h84PcXKYJZwoVTep82WZvjyctmLW1zOBKuSnhzez1TAsASlvUGe1oRwtIROOwfJPUX5zWzuvpAfVy8ktyOhpYMTMVAn5FzIgCQIDUhBDX-kxS5vLYwH5p7OLqzjLG8AlCoglIzMBoGVD_pMTIQhAiYjI6WygQOI59PCNI9JRGYSbFI1xXMfDHrOH7YAbjgOYZLcG4pl2Kwz37OhobuTGC2o1A5OJ1YlOBWvlwzZP0BCpMmjAl7MjZ5pjHA5i_oZojSOg96fLaVRt2EmN3A=w1062-h903-ft";
+            console.log("player: "+playerChoice)
+            enemyChoosing()
+            checkWinner()
+        }
+        function reset() {
+            next()
+            document.getElementById('gameWinner').innerHTML = "Nie rozpoczęto gry."
+            document.getElementById('gameWinner').style.color = "black"
+            document.getElementById('score').innerHTML = "0:0"
+            scoreEnemy = 0
+            scorePlayer = 0
+            console.log('successfully reset.')
+            console.log('--------------------')
+        }
+        function next(){
+            document.getElementById('player').src = "https://lh3.googleusercontent.com/fife/ABSRlIoUQSN4GnJUDW__ocHE9EHexjD4GY5CAoRG-FwSNRc9Q_5xtFgdLKNLQNcTXhMGO7jlzrAkeEPLi12xRuKXz5-dda-ss64HPAb6DQ1I9GUmsHLh2wQYmrWDquPemLyr2hs0Q_SVxDJ4asGzEB7tG1tIAjKXRSNAqeIszl5GNgOOeHOcdb8z3VQbdqkdgMSvvZptrfRb983nXrZVdylVcbSlAdIrMJ0Udrz2lsgr6_F1kRYdjUg3LrO6BdGLgVw_VW7iM7P_XCG3N9BmdJxDXRQ48RxzJ5yxSYxECmofxn_Icjp9QUPoeEKKARrI_znWhS6NUzlAIznnC9S72yN0R07UPFBtEKUFMuscRA3NMycN9x9XRRyscXNw78rvTFs5MPfNLDwsiPqWn-vm8Il-1JNNzYQVMFPGxfMfhayAMcodNp3iStlM1JtNx9pm5WLiv8g-JynvYIuP4MoAM7XGsiMb3GY9TyraFqdntlUQMSpfec81WwFaBhQQfSiE0ASjYXffg0CLLGsBHEWlsXAl9cbGZcj-BaCCE1VCO4EO8uM2B1_bGUKKS-pbh5NxzDXWCyXIHvzJAYfkBr3GEq-LupGFy5QjUNbRVrAji35Ej0PdfZYoZG4MHeGjAoAqUicwRBqEmQ4rGbx9Owun1A58pM0B4yODyK0F-LzFr7Dp3cpC_l6IoD4E6lDTLzCzmVnqM5kZhBw-_5tV7ep3AbJqi2CvTbBthepb1Q=w1062-h903-ft"
+            document.getElementById('bot').src = "https://lh3.googleusercontent.com/fife/ABSRlIoUQSN4GnJUDW__ocHE9EHexjD4GY5CAoRG-FwSNRc9Q_5xtFgdLKNLQNcTXhMGO7jlzrAkeEPLi12xRuKXz5-dda-ss64HPAb6DQ1I9GUmsHLh2wQYmrWDquPemLyr2hs0Q_SVxDJ4asGzEB7tG1tIAjKXRSNAqeIszl5GNgOOeHOcdb8z3VQbdqkdgMSvvZptrfRb983nXrZVdylVcbSlAdIrMJ0Udrz2lsgr6_F1kRYdjUg3LrO6BdGLgVw_VW7iM7P_XCG3N9BmdJxDXRQ48RxzJ5yxSYxECmofxn_Icjp9QUPoeEKKARrI_znWhS6NUzlAIznnC9S72yN0R07UPFBtEKUFMuscRA3NMycN9x9XRRyscXNw78rvTFs5MPfNLDwsiPqWn-vm8Il-1JNNzYQVMFPGxfMfhayAMcodNp3iStlM1JtNx9pm5WLiv8g-JynvYIuP4MoAM7XGsiMb3GY9TyraFqdntlUQMSpfec81WwFaBhQQfSiE0ASjYXffg0CLLGsBHEWlsXAl9cbGZcj-BaCCE1VCO4EO8uM2B1_bGUKKS-pbh5NxzDXWCyXIHvzJAYfkBr3GEq-LupGFy5QjUNbRVrAji35Ej0PdfZYoZG4MHeGjAoAqUicwRBqEmQ4rGbx9Owun1A58pM0B4yODyK0F-LzFr7Dp3cpC_l6IoD4E6lDTLzCzmVnqM5kZhBw-_5tV7ep3AbJqi2CvTbBthepb1Q=w1062-h903-ft"
+            document.getElementById('roundWinner').innerHTML = "Wybierz swój ruch."
+            document.getElementById('papierButton').disabled = false
+            document.getElementById('kamienButton').disabled = false
+            document.getElementById('nozyceButton').disabled = false
+            document.getElementById('next').disabled = true
+        }
+    </script>
+    <table>
+        <tr>
+            <th></th>
+            <th>Ty</th>
+            <th>Komputer</th>
+        </tr>
+        <tr>
+            <td style="width: 10%;">
+                <button id="papierButton" class="choose" onclick="papier()">Papier</button><br>
+                <button id="kamienButton" class="choose" onclick="kamien()">Kamień</button><br>
+                <button id="nozyceButton" class="choose" onclick="nozyce()">Nożyce</button>
+            </td>
+            <td>
+                <img src="https://lh3.googleusercontent.com/fife/ABSRlIoUQSN4GnJUDW__ocHE9EHexjD4GY5CAoRG-FwSNRc9Q_5xtFgdLKNLQNcTXhMGO7jlzrAkeEPLi12xRuKXz5-dda-ss64HPAb6DQ1I9GUmsHLh2wQYmrWDquPemLyr2hs0Q_SVxDJ4asGzEB7tG1tIAjKXRSNAqeIszl5GNgOOeHOcdb8z3VQbdqkdgMSvvZptrfRb983nXrZVdylVcbSlAdIrMJ0Udrz2lsgr6_F1kRYdjUg3LrO6BdGLgVw_VW7iM7P_XCG3N9BmdJxDXRQ48RxzJ5yxSYxECmofxn_Icjp9QUPoeEKKARrI_znWhS6NUzlAIznnC9S72yN0R07UPFBtEKUFMuscRA3NMycN9x9XRRyscXNw78rvTFs5MPfNLDwsiPqWn-vm8Il-1JNNzYQVMFPGxfMfhayAMcodNp3iStlM1JtNx9pm5WLiv8g-JynvYIuP4MoAM7XGsiMb3GY9TyraFqdntlUQMSpfec81WwFaBhQQfSiE0ASjYXffg0CLLGsBHEWlsXAl9cbGZcj-BaCCE1VCO4EO8uM2B1_bGUKKS-pbh5NxzDXWCyXIHvzJAYfkBr3GEq-LupGFy5QjUNbRVrAji35Ej0PdfZYoZG4MHeGjAoAqUicwRBqEmQ4rGbx9Owun1A58pM0B4yODyK0F-LzFr7Dp3cpC_l6IoD4E6lDTLzCzmVnqM5kZhBw-_5tV7ep3AbJqi2CvTbBthepb1Q=w1062-h903-ft" id="player">
+            </td>
+            <td>
+                <img src="https://lh3.googleusercontent.com/fife/ABSRlIoUQSN4GnJUDW__ocHE9EHexjD4GY5CAoRG-FwSNRc9Q_5xtFgdLKNLQNcTXhMGO7jlzrAkeEPLi12xRuKXz5-dda-ss64HPAb6DQ1I9GUmsHLh2wQYmrWDquPemLyr2hs0Q_SVxDJ4asGzEB7tG1tIAjKXRSNAqeIszl5GNgOOeHOcdb8z3VQbdqkdgMSvvZptrfRb983nXrZVdylVcbSlAdIrMJ0Udrz2lsgr6_F1kRYdjUg3LrO6BdGLgVw_VW7iM7P_XCG3N9BmdJxDXRQ48RxzJ5yxSYxECmofxn_Icjp9QUPoeEKKARrI_znWhS6NUzlAIznnC9S72yN0R07UPFBtEKUFMuscRA3NMycN9x9XRRyscXNw78rvTFs5MPfNLDwsiPqWn-vm8Il-1JNNzYQVMFPGxfMfhayAMcodNp3iStlM1JtNx9pm5WLiv8g-JynvYIuP4MoAM7XGsiMb3GY9TyraFqdntlUQMSpfec81WwFaBhQQfSiE0ASjYXffg0CLLGsBHEWlsXAl9cbGZcj-BaCCE1VCO4EO8uM2B1_bGUKKS-pbh5NxzDXWCyXIHvzJAYfkBr3GEq-LupGFy5QjUNbRVrAji35Ej0PdfZYoZG4MHeGjAoAqUicwRBqEmQ4rGbx9Owun1A58pM0B4yODyK0F-LzFr7Dp3cpC_l6IoD4E6lDTLzCzmVnqM5kZhBw-_5tV7ep3AbJqi2CvTbBthepb1Q=w1062-h903-ft" id="bot">
+            </td>
+        </tr>
+    </table>
+    <h1 id="roundWinner">Wybierz swój ruch.</h1>
+    <h2 id="score">0:0</h2>
+    <h3 id="gameWinner">Nie rozpoczęto gry.</h3>
+    <div id="settings">
+        <button id="next" onclick="next()" disabled>Kolejna runda</button>
+        <button id="reset" onclick="reset()">Restart</button>
+    </div>
+</body>
+</html>
