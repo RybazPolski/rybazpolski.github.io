@@ -20,7 +20,7 @@ function szyfruj(){
             szyfr = szyfr + input[i]
         }else{
             if(alfabetPolski[n+klucz]==undefined){
-                szyfr = szyfr + alfabetPolski[31-Math.abs(n)-1+klucz]
+                szyfr = szyfr + alfabetPolski[n+klucz-31]
             }else{
                 szyfr = szyfr + alfabetPolski[n+klucz]
             }
@@ -51,7 +51,10 @@ function deszyfruj(){
             deszyfr = deszyfr + input[i]
         }else{
             if(alfabetPolski[n-klucz]==undefined){
-                deszyfr = deszyfr + alfabetPolski[31-Math.abs(n)+1-klucz]
+
+
+                
+                deszyfr = deszyfr + alfabetPolski[32-Math.abs(n)-klucz]
             }else{
                 deszyfr = deszyfr + alfabetPolski[n-klucz]
             }
