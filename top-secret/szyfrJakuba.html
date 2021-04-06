@@ -11,8 +11,13 @@
 <body>
     <input type="text" id="input">
     <button onclick="szyfruj()">Szyfruj</button>
-    <button onclick="deszyfruj()">Rozszyfruj</button><br>
+    <button onclick="deszyfruj()">Rozszyfruj</button>
+    <span onclick="advanced()">&#128736</span><br>
     <span id="akcja">Zaszyfrowane: </span><input type="text" id="result" readonly="readonly"> <button onclick="kopiuj()">Skopiuj</button><span id="confirm" style="color: green;"></span><br><br>
     <button onclick="reset()" style="background-color: red;">WYCZYŚĆ</button>
+    <div id="advanced" style="display: none;">
+        <br>
+        Klucz: <input type="number" min="1" max="32" id="klucz" value="1"><button onclick="confirmKey()">Zatwierdź</button>
+    </div>
 </body>
 </html>

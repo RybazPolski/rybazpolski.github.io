@@ -6,6 +6,7 @@ var i
 var szyfr
 var deszyfr
 var result
+var klucz = 1
 function szyfruj(){
     szyfr = ""
     input = document.getElementById("input").value.toLowerCase()
@@ -18,10 +19,10 @@ function szyfruj(){
         if(n==32){
             szyfr = szyfr + input[i]
         }else{
-            if(n==31){
-                szyfr = szyfr + "a"
+            if(alfabetPolski[n+klucz]==undefined){
+                szyfr = szyfr + alfabetPolski[31-Math.abs(n)-1+klucz]
             }else{
-                szyfr = szyfr + alfabetPolski[n+1]
+                szyfr = szyfr + alfabetPolski[n+klucz]
             }
         }
         
@@ -49,10 +50,10 @@ function deszyfruj(){
         if(n==32){
             deszyfr = deszyfr + input[i]
         }else{
-            if(n==0){
-                deszyfr = deszyfr + "ż"
+            if(alfabetPolski[n-klucz]==undefined){
+                deszyfr = deszyfr + alfabetPolski[31-Math.abs(n)+1-klucz]
             }else{
-                deszyfr = deszyfr + alfabetPolski[n-1]
+                deszyfr = deszyfr + alfabetPolski[n-klucz]
             }
         }
     }
@@ -85,4 +86,16 @@ function reset(){
     result = null
     document.getElementById("input").value = null
     document.getElementById("result").value = null
+}
+function advanced(){
+    
+    if(document.getElementById("advanced").style.display == "none"){
+        document.getElementById("advanced").style.display = "block"
+    }else{
+        document.getElementById("advanced").style.display = "none"
+    }
+}
+function confirmKey(){
+    klucz = parseInt(document.getElementById("klucz").value)
+    console.log("Nowy klucz: "+ klucz)
 }
