@@ -6,7 +6,7 @@ var i
 var szyfr
 var deszyfr
 var result
-var klucz = 2
+var klucz = 1
 function szyfruj(){
     szyfr = ""
     input = document.getElementById("input").value.toLowerCase()
