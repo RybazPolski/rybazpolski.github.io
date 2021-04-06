@@ -6,7 +6,7 @@ var i
 var szyfr
 var deszyfr
 var result
-var klucz = 1
+var klucz = 2
 function szyfruj(){
     szyfr = ""
     input = document.getElementById("input").value.toLowerCase()
@@ -20,7 +20,7 @@ function szyfruj(){
             szyfr = szyfr + input[i]
         }else{
             if(alfabetPolski[n+klucz]==undefined){
-                szyfr = szyfr + alfabetPolski[n+klucz-31]
+                szyfr = szyfr + alfabetPolski[n+klucz-32]
             }else{
                 szyfr = szyfr + alfabetPolski[n+klucz]
             }
@@ -51,10 +51,7 @@ function deszyfruj(){
             deszyfr = deszyfr + input[i]
         }else{
             if(alfabetPolski[n-klucz]==undefined){
-
-
-                
-                deszyfr = deszyfr + alfabetPolski[32-Math.abs(n)-klucz]
+                deszyfr = deszyfr + alfabetPolski[32-Math.abs(n-klucz)]
             }else{
                 deszyfr = deszyfr + alfabetPolski[n-klucz]
             }
