@@ -9,10 +9,10 @@ var result
 var klucz = 1
 function szyfruj(){
     szyfr = ""
-    input = document.getElementById("input").value.toLowerCase()
+    input = document.getElementById("input").value
     for(i = 0; i < input.length; i++){
         n = 0
-        while(alfabetPolski[n] !== input[i]&&n<32){
+        while(alfabetPolski[n] !== input[i].toLowerCase()&&n<32){
             n++
         }
         
@@ -20,9 +20,18 @@ function szyfruj(){
             szyfr = szyfr + input[i]
         }else{
             if(alfabetPolski[n+klucz]==undefined){
-                szyfr = szyfr + alfabetPolski[n+klucz-32]
+                if(input[i]==input[i].toUpperCase()){
+                    szyfr = szyfr + alfabetPolski[n+klucz-32].toUpperCase()
+                }else{
+                    szyfr = szyfr + alfabetPolski[n+klucz-32]
+                }
             }else{
-                szyfr = szyfr + alfabetPolski[n+klucz]
+                if(input[i]==input[i].toUpperCase()){
+                    szyfr = szyfr + alfabetPolski[n+klucz].toUpperCase()
+                }else{
+                    szyfr = szyfr + alfabetPolski[n+klucz]
+                }
+                
             }
         }
         
@@ -39,10 +48,10 @@ function szyfruj(){
 
 function deszyfruj(){
     deszyfr = ""
-    input = document.getElementById("input").value.toLowerCase()
+    input = document.getElementById("input").value
     for(i = 0; i < input.length; i++){
         n = 0
-        while(alfabetPolski[n] !== input[i]&&n<32){
+        while(alfabetPolski[n] !== input[i].toLowerCase()&&n<32){
             n++
         }
         
@@ -51,9 +60,17 @@ function deszyfruj(){
             deszyfr = deszyfr + input[i]
         }else{
             if(alfabetPolski[n-klucz]==undefined){
-                deszyfr = deszyfr + alfabetPolski[32-Math.abs(n-klucz)]
+                if(input[i]==input[i].toUpperCase()){
+                    deszyfr = deszyfr + alfabetPolski[32-Math.abs(n-klucz)].toUpperCase()
+                }else{
+                    deszyfr = deszyfr + alfabetPolski[32-Math.abs(n-klucz)]
+                }
             }else{
-                deszyfr = deszyfr + alfabetPolski[n-klucz]
+                if(input[i]==input[i].toUpperCase()){
+                    deszyfr = deszyfr + alfabetPolski[n-klucz].toUpperCase()
+                }else{
+                    deszyfr = deszyfr + alfabetPolski[n-klucz]
+                }
             }
         }
     }
