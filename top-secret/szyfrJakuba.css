@@ -1,0 +1,93 @@
+body{
+    background-image: url("szyfrJakubaBackground.jpg");
+    background-position: center;
+    background-size: cover;
+    font-size: 3vh;
+    font-family: Arial, Helvetica, sans-serif;
+    pointer-events: none;
+
+
+}
+textarea{
+    width: 100%;
+    height: 25vh;   
+    font-size: 3vh;
+    resize: none;
+}
+.content{
+    display: block;
+    background-color: mediumspringgreen;
+    margin: 0% 5%;
+    padding: 3vh;
+    height: 100vh;
+    border-radius: 5vh;
+    position: relative;
+    top: -40px;
+    padding-top: 5vh;
+
+    z-index: -1;
+    pointer-events: all;
+
+
+}
+h1{
+    color: white;
+    text-align: center;
+    font-size: 4vh;
+}
+.subtitle{
+    font-size: 14px;
+}
+.title{
+    border: 15px solid black;
+    background-color: black;
+    width: max-content;
+    margin: auto;
+    border-radius: 5vh;
+}
+button{
+    border-radius: 10%;
+    background-color: transparent;
+    width: max-content;
+    transition: 0.5s;
+    height: 50px;
+    font-weight: bold;
+    background-color: lightgrey;
+    border: 2px double gray;
+}
+
+button:hover:not(#advancedButton){
+    color: black;
+    pointer-events: all;
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: white;
+}
+
+#klucz{
+    height: 44px;
+    width: 32px;
+    border-radius: 10px 0px 0px 10px;
+}
+#kluczConfirm{
+    height: 50px;
+    border-radius: 0px 10px 10px 0px;
+}
+.limit{
+    font-size: 16px;
+}
+#clear{
+    background-color: lightpink;
+    color: black;
+}
+#clear:hover{
+    background-color: red;
+    color: white;
+}
+
+#advancedButton{
+    width: 50px;
+    pointer-events: all;
+    cursor: pointer;
+    transition: none;
+}

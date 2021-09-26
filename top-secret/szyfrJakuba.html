@@ -7,23 +7,36 @@
     <title>Szyfr Jakuba</title>
     <script src="szyfrJakuba.js"></script>
     <link rel="icon" href="szyfrJakuba.png">
+    <link rel="stylesheet" href="szyfrJakuba.css">
 </head>
 <body>
-    <p class="input">
-        <input type="text" id="input" style="width: 50%;" placeholder="Wprowadź tekst..."><br>
-        <button onclick="szyfruj()">Szyfruj</button>
-        <button onclick="deszyfruj()">Rozszyfruj</button>
-        <span onclick="advanced()">&#128736</span>
-        <p id="advanced" style="display: none;">
-            Klucz: <input type="number" min="1" max="31" id="klucz" value="1"><button onclick="confirmKey()">Zatwierdź</button><br>
-            Proszę korzystać z kluczy 1-31
+    
+<div class="container">
+    <div class="title">
+        <h1>Szyfr Jakuba<br>
+            <span class="subtitle">A tak naprawdę, to Szyfr Cezara</span>
+        </h1>
+    </div>
+
+    <div class="content">
+        <p class="input">
+            <textarea id="input" placeholder="Wprowadź tekst..."></textarea><br>
+            <button onclick="szyfruj()">Szyfruj</button>
+            <button onclick="deszyfruj()">Rozszyfruj</button>
+            <button id="advancedButton" onclick="advanced()">&#9660;</button>
+            <div id="advanced" style="display: none;">
+                Klucz: <input type="number" min="1" max="31" id="klucz" value="1"><button onclick="confirmKey()" id="kluczConfirm">Zatwierdź</button>
+                <br><span class="limit">Proszę korzystać z kluczy 1-31</span><br>
+            </div>
         </p>
-    </p>
-    <p class="output">
-        <span id="akcja">Zaszyfrowane:</span><br><input type="text" id="result" readonly="readonly" style="width: 50%;" placeholder="Tu wyświetli się wynik..."><br><button onclick="kopiuj()">Skopiuj</button><span id="confirm" style="color: green;"></span>
-    </p>
-    <p class="clear">
-        <button onclick="reset()" style="background-color: red;">WYCZYŚĆ</button>
-    </p>
+        
+        <p class="output">
+            <span id="akcja">Zaszyfrowane:</span><br><textarea type="text" id="result" readonly="readonly" placeholder="Tu wyświetli się wynik..."></textarea>
+            <br><button id="clear" onclick="reset()">WYCZYŚĆ</button><button id="copy" onclick="kopiuj()">Skopiuj</button><br><span id="confirm" style="color: green;"></span>
+        </p>
+            
+    </div>
+</div>
+    
 </body>
 </html>

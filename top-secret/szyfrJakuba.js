@@ -107,9 +107,14 @@ function reset(){
 function advanced(){
     
     if(document.getElementById("advanced").style.display == "none"){
-        document.getElementById("advanced").style.display = "block"
+        document.getElementById("advanced").style.display = "inline"
+        document.getElementById("advancedButton").innerHTML = '&#9650;'
+        document.getElementById("advancedButton").style.backgroundColor="white"
     }else{
         document.getElementById("advanced").style.display = "none"
+        document.getElementById("advancedButton").innerHTML = '&#9660;'
+        document.getElementById("advancedButton").style.backgroundColor="lightgray"
+
     }
 }
 function confirmKey(){
