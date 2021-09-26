@@ -9,16 +9,21 @@
     <link rel="icon" href="szyfrJakuba.png">
 </head>
 <body>
-    <input type="text" id="input">
-    <button onclick="szyfruj()">Szyfruj</button>
-    <button onclick="deszyfruj()">Rozszyfruj</button>
-    <span onclick="advanced()">&#128736</span><br>
-    <span id="akcja">Zaszyfrowane: </span><input type="text" id="result" readonly="readonly"> <button onclick="kopiuj()">Skopiuj</button><span id="confirm" style="color: green;"></span><br><br>
-    <button onclick="reset()" style="background-color: red;">WYCZYŚĆ</button>
-    <div id="advanced" style="display: none;">
-        <br>
-        Klucz: <input type="number" min="1" max="31" id="klucz" value="1"><button onclick="confirmKey()">Zatwierdź</button><br>
-        Proszę korzystać z kluczy 1-31
-    </div>
+    <p class="input">
+        <input type="text" id="input" style="width: 50%;" placeholder="Wprowadź tekst..."><br>
+        <button onclick="szyfruj()">Szyfruj</button>
+        <button onclick="deszyfruj()">Rozszyfruj</button>
+        <span onclick="advanced()">&#128736</span>
+        <p id="advanced" style="display: none;">
+            Klucz: <input type="number" min="1" max="31" id="klucz" value="1"><button onclick="confirmKey()">Zatwierdź</button><br>
+            Proszę korzystać z kluczy 1-31
+        </p>
+    </p>
+    <p class="output">
+        <span id="akcja">Zaszyfrowane:</span><br><input type="text" id="result" readonly="readonly" style="width: 50%;" placeholder="Tu wyświetli się wynik..."><br><button onclick="kopiuj()">Skopiuj</button><span id="confirm" style="color: green;"></span>
+    </p>
+    <p class="clear">
+        <button onclick="reset()" style="background-color: red;">WYCZYŚĆ</button>
+    </p>
 </body>
 </html>
