@@ -56,7 +56,7 @@ button{
     border: 2px double gray;
 }
 
-button:hover:not(#advancedButton){
+button:hover:not(#advancedButton):not(#clear){
     color: black;
     pointer-events: all;
     cursor: pointer;
@@ -83,6 +83,9 @@ button:hover:not(#advancedButton){
 #clear:hover{
     background-color: red;
     color: white;
+    pointer-events: all;
+    cursor: pointer;
+    transition: 0.5s;
 }
 
 #advancedButton{
