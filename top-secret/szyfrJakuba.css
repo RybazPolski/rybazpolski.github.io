@@ -19,7 +19,7 @@ textarea{
     background-color: mediumspringgreen;
     margin: 0% 5%;
     padding: 3vh;
-    height: 100vh;
+    height: max-content;
     border-radius: 5vh;
     position: relative;
     top: -40px;
