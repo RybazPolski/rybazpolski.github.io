@@ -118,6 +118,6 @@ function advanced(){
     }
 }
 function confirmKey(){
-    klucz = parseInt(document.getElementById("klucz").value)
+    klucz = parseInt(document.getElementById("klucz").value)%32
     console.log("Nowy klucz: "+ klucz)
 }
