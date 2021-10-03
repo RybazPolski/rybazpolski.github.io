@@ -98,7 +98,7 @@ function tdClick(xy){
                 case 1:
                     symbol = 'krzyzyk.png'
                     player = 2
-                    document.body.style.backgroundColor = "lightgreen"
+                    document.body.style.backgroundColor = "lightgreen" 
                     document.getElementById("table").style.border = "5px solid lightgreen"
                 break;
             
