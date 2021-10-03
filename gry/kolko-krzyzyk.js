@@ -8,6 +8,11 @@ function endGame(){
     }
     
     document.querySelectorAll("td").forEach(disable);
+    if(player=1){
+        player=2
+    }else{
+        player=1
+    }
 }
 
 function vertCheck(x){
@@ -77,22 +82,7 @@ function tdClick(xy){
         document.getElementById(xy).style.pointerEvents = "none"
 
 
-        switch(player){
-            case 1:
-                symbol = 'krzyzyk.png'
-                player = 2
-            break;
         
-            case 2:
-                symbol = 'kolko.png'
-                player = 1
-            break;
-        
-            default:
-                symbol = 'kolko.png'
-                player = 1
-            break;
-        }
     
             vertCheck(1)
             vertCheck(2)
@@ -103,6 +93,26 @@ function tdClick(xy){
             horCheck(3)
 
             diagCheck()
-
+        
+            switch(player){
+                case 1:
+                    symbol = 'krzyzyk.png'
+                    player = 2
+                    document.body.style.backgroundColor = "lightgreen"
+                    document.getElementById("table").style.border = "5px solid lightgreen"
+                break;
+            
+                case 2:
+                    symbol = 'kolko.png'
+                    player = 1
+                    document.body.style.backgroundColor = "lightskyblue"
+                    document.getElementById("table").style.border = "5px solid lightskyblue"
+                break;
+            
+                default:
+                    symbol = 'kolko.png'
+                    player = 1
+                break;
+            }
     }
 }
