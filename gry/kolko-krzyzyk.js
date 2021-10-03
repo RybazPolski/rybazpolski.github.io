@@ -1,6 +1,6 @@
 var player = 1
 var symbol = "kolko.png"
-
+var game
 function endGame(){
 
     function disable(element) {
@@ -8,11 +8,7 @@ function endGame(){
     }
     
     document.querySelectorAll("td").forEach(disable);
-    if(player=1){
-        player=2
-    }else{
-        player=1
-    }
+    game="ended"
 }
 
 function vertCheck(x){
@@ -23,9 +19,15 @@ function vertCheck(x){
 
 
     if(a==b&&a==c&&a!=""){
-        document.getElementById(x+",1").style.backgroundColor="red"
-        document.getElementById(x+",2").style.backgroundColor="red"
-        document.getElementById(x+",3").style.backgroundColor="red"
+        if(player==1){
+            document.getElementById(x+",1").style.backgroundColor="blue"
+            document.getElementById(x+",2").style.backgroundColor="blue"
+            document.getElementById(x+",3").style.backgroundColor="blue"
+        }else{
+            document.getElementById(x+",1").style.backgroundColor="lime"
+            document.getElementById(x+",2").style.backgroundColor="lime"
+            document.getElementById(x+",3").style.backgroundColor="lime"
+        }
         endGame()
     }
 
@@ -39,9 +41,15 @@ function horCheck(y){
     var c = document.getElementById("3,"+y).innerHTML
 
     if(a==b&&a==c&&a!=""){
-        document.getElementById("1,"+y).style.backgroundColor="red"
-        document.getElementById("2,"+y).style.backgroundColor="red"
-        document.getElementById("3,"+y).style.backgroundColor="red"
+        if(player==1){
+            document.getElementById("1,"+y).style.backgroundColor="blue"
+            document.getElementById("2,"+y).style.backgroundColor="blue"
+            document.getElementById("3,"+y).style.backgroundColor="blue"
+        }else{
+            document.getElementById("1,"+y).style.backgroundColor="lime"
+            document.getElementById("2,"+y).style.backgroundColor="lime"
+            document.getElementById("3,"+y).style.backgroundColor="lime"
+        }
         endGame()
     }
 }
@@ -54,9 +62,15 @@ function diagCheck(){
         &&
         document.getElementById("2,2").innerHTML!=""
     ){
-        document.getElementById("1,1").style.backgroundColor="red"
-        document.getElementById("2,2").style.backgroundColor="red"
-        document.getElementById("3,3").style.backgroundColor="red"
+        if(player==1){
+            document.getElementById("1,1").style.backgroundColor="blue"
+            document.getElementById("2,2").style.backgroundColor="blue"
+            document.getElementById("3,3").style.backgroundColor="blue"
+        }else{
+            document.getElementById("1,1").style.backgroundColor="lime"
+            document.getElementById("2,2").style.backgroundColor="lime"
+            document.getElementById("3,3").style.backgroundColor="lime"
+        }
         endGame()
     }
 
@@ -68,9 +82,15 @@ function diagCheck(){
         &&
         document.getElementById("2,2").innerHTML!=""
     ){
-        document.getElementById("1,3").style.backgroundColor="red"
-        document.getElementById("2,2").style.backgroundColor="red"
-        document.getElementById("3,1").style.backgroundColor="red"
+        if(player==1){
+            document.getElementById("1,3").style.backgroundColor="blue"
+            document.getElementById("2,2").style.backgroundColor="blue"
+            document.getElementById("3,1").style.backgroundColor="blue"
+        }else{
+            document.getElementById("1,3").style.backgroundColor="lime"
+            document.getElementById("2,2").style.backgroundColor="lime"
+            document.getElementById("3,1").style.backgroundColor="lime"
+        }
         endGame()
     }
 }
@@ -94,25 +114,29 @@ function tdClick(xy){
 
             diagCheck()
         
-            switch(player){
-                case 1:
-                    symbol = 'krzyzyk.png'
-                    player = 2
-                    document.body.style.backgroundColor = "lightgreen"
-                    document.getElementById("table").style.border = "5px solid lightgreen"
-                break;
             
-                case 2:
-                    symbol = 'kolko.png'
-                    player = 1
-                    document.body.style.backgroundColor = "lightskyblue"
-                    document.getElementById("table").style.border = "5px solid lightskyblue"
-                break;
-            
-                default:
-                    symbol = 'kolko.png'
-                    player = 1
-                break;
+
+            if(game!="ended"){
+                switch(player){
+                    case 1:
+                        symbol = 'krzyzyk.png'
+                        player = 2
+                        document.body.style.backgroundColor = "lightgreen"
+                        document.getElementById("table").style.border = "5px solid lightgreen"
+                    break;
+                
+                    case 2:
+                        symbol = 'kolko.png'
+                        player = 1
+                        document.body.style.backgroundColor = "lightskyblue"
+                        document.getElementById("table").style.border = "5px solid lightskyblue"
+                    break;
+                
+                    default:
+                        symbol = 'kolko.png'
+                        player = 1
+                    break;
+                }
             }
     }
 }
