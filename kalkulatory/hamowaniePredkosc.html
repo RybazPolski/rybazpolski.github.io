@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oblicz prędkość na podstawie drogi hamowania</title>
+</head>
+<body>
+    <style>
+        span:not(#speed){
+            display: none;
+        }
+    </style>
+
+    Wybierz, co chcesz obliczyć: 
+    <select id="choice" onChange="change(this);">
+        <option value="speed">Prędkość</option>
+        <option value="distance">Droga</option>
+    </select>
+    <span id="speed">
+        <p>
+        Podaj drogę hamowania: <input type="number" style="width: 64px;" id="s"> metrów<br>
+        <button onclick="calcSpeed()">Oblicz</button>
+        </p>
+
+        <p id="speedResult">
+            Prędkość przed hamowaniem samochodu:
+        </p>
+    </span>
+    
+    <span id="distance">
+        <p>
+            Podaj prędkość: <input type="number" style="width: 64px;" id="v">km/h<br>
+            <button onclick="calcDist()">Oblicz</button>
+        </p>
+
+        <p id="distanceResult">
+            Droga hamowania samochodu:
+        </p>
+    </span>
+
+    <script>
+
+        function change(select){
+            var choice = select.options[select.selectedIndex].value
+            document.querySelector("style").innerHTML = "span:not(#"+choice+"){display: none;}"
+        }
+
+        function calcSpeed(){
+            var s = document.getElementById("s").value;
+            var v1 = Math.round(((5*Math.sqrt((240*s)+441))/6)-(35/2))
+            var v2 = Math.round(((-5*Math.sqrt((240*s)+441))/6)-(35/2))
+            switch(true){
+                case v1>=0:
+                    document.getElementById("speedResult").innerHTML = "Prędkość przed hamowaniem samochodu: ok. "+v1+"km/h"
+                    break;
+                case v2>=0:
+                    document.getElementById("speedResult").innerHTML = "Prędkość przed hamowaniem samochodu: ok. "+v2+"km/h"
+                    break;
+                default:
+                    document.getElementById("speedResult").innerHTML = "Error"
+                    break;
+
+            }
+        }
+
+        function calcDist(){
+            var v = document.getElementById("v").value;
+            var s1 = (v*(((3*v)/500)+0.21))
+            s1 = parseFloat(s1.toFixed(2))
+            document.getElementById("distanceResult").innerHTML = "Droga hamowania samochodu: ok. "+s1+" metrów"
+        }
+    </script>
+</body>
+</html>
