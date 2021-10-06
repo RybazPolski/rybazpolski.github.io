@@ -7,7 +7,7 @@
     <title>Oblicz prędkość na podstawie drogi hamowania</title>
 </head>
 <body>
-    <style>
+    <style id="style">
         span:not(#speed){
             display: none;
         }
@@ -44,7 +44,7 @@
 
         function change(select){
             var choice = select.options[select.selectedIndex].value
-            document.querySelector("style").innerHTML = "span:not(#"+choice+"){display: none;}"
+            document.getElementById("style").innerHTML = "span:not(#"+choice+"){display: none;}"
         }
 
         function calcSpeed(){
