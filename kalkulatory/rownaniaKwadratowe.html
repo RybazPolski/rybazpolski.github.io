@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Równania kwadratowe</title>
+    <link rel="icon" href="https://library.kissclipart.com/20180829/hq/kissclipart-superscript-symbol-clipart-subscript-and-superscri-7bdd7456e138bed8.png">
+    <style>
+        #viettInfo{
+            display: none;
+        }
+        #help:hover + #viettInfo{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Podaj równanie kwadratowe</h1>
+    <div id="input">
+        <b><input type="number" size="1" id="a">x<sup>2</sup> + <input type="number" size="1" id="b">x + <input type="number" size="1" id="c"> = 0</b>
+        <br><br><button onclick="oblicz()">Oblicz</button>
+    </div>
+
+    <div id="output">
+        <div id="abc"></div>
+        <div id="delta"></div>
+        <div id="viett"></div>
+        <div id="x"></div>
+    </div>
+
+    <script>
+        
+        function oblicz(){
+            var a = document.getElementById("a").value
+            var b = document.getElementById("b").value
+            var c = document.getElementById("c").value
+            var bPow = Math.pow(b,2)
+            var ac4 = 4*a*c
+            var delta = Math.pow(b,2)-(4*a*c)
+            var viettAdd = b*-1/a
+            var viettMult = c/a
+            var x1 = (-b+Math.sqrt(delta))/2
+            var x2 = (-b-Math.sqrt(delta))/2
+
+            document.getElementById("abc").innerHTML = "<h3>a = "+a+"<h3><h3>b = "+b+"<h3><h3>c = "+c+"<h3>"
+            
+            if(ac4<0){
+                ac4= "("+ac4+")"
+            }
+            if(c<0){
+                c= "("+c+")"
+            }
+            if(b<0){
+                b= "("+b+")"
+            }
+            if(a<0){
+                a= "("+a+")"
+            }
+            document.getElementById("delta").innerHTML = "<h2>&Delta; = "+b+"<sup>2</sup>-4&times;"+a+"&times;"+c+"</h2><h2>&Delta; = "+bPow+"-"+ac4+" = "+delta+"</h2>"
+            if(delta>0){
+                
+                if(viettMult<0){
+                    document.getElementById("viett").innerHTML = "<h3 id='help'>x<sub>1</sub> i x<sub>2</sub> mają różne znaki</h3>"
+                }else if(viettMult>0&&viettAdd>0){
+                    document.getElementById("viett").innerHTML = "<h3 id='help'>x<sub>1</sub> i x<sub>2</sub> są dodatnie</h3>"
+                }else if(viettMult>0&&viettAdd<0){
+                    document.getElementById("viett").innerHTML = "<h3 id='help'>x<sub>1</sub> i x<sub>2</sub> są ujemne</h3>"
+                }else{
+                    document.getElementById("viett").innerHTML = "<h3 id='help'>Error</h3>"
+                }
+
+                document.getElementById("viett").innerHTML = document.getElementById("viett").innerHTML + "<span id='viettInfo'>x<sub>1</sub>+x<sub>2</sub> = -"+b+"/"+a+" = "+viettAdd+"<br>x<sub>1</sub>&times;x<sub>2</sub> = "+c+"/"+a+" = "+viettMult+"</span>" 
+                document.getElementById("x").innerHTML = "<h3>x<sub>1</sub> = "+x1+"</h3><h3>x<sub>2</sub> = "+x2+"</h3>" 
+
+            
+            }else if(delta==0){
+                document.getElementById("viett").innerHTML = "<h3>Równanie ma 1 rozwiązanie.</h3>" 
+                document.getElementById("x").innerHTML = "<h3>x = "+x1+"</h3>" 
+            }else{
+                document.getElementById("viett").innerHTML = "<h3>Równanie nie ma rozwiązań.</h3>" 
+                document.getElementById("x").innerHTML = ""
+            }
+        }
+
+    </script>
+</body>
+</html>
