@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaproszenie</title>
+    <link rel="icon" href="./uro2021icon.png">
+    <link href="https://pl.allfont.net/allfont.css?fonts=comic-sans-ms" rel="stylesheet" type="text/css"/>
+    <style>
+        body{
+            font-family: "Comic Sans MS", "Comic Sans", arial;
+        }
+        #img{
+            position: relative;
+            text-align: center;
+        }
+        #header{
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            font-size: 3vh;
+        }
+        #sign{
+            position: absolute;
+            bottom: ;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // if(prompt("Hasło: ")!=="brak"){
+        //     window.stop()
+        // }
+
+        var name = prompt("Podaj imię")
+    </script>
+
+
+    <div id="img">
+        <img width="100%" src="./uro2021bg.jpg" alt="Coś się zrąbało">
+        <div id="header">
+            <b>Siemka <span id="name"></span>!</b>
+        </div>
+        <div id="content">
+            
+        </div>
+        <div id="sign">
+            
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("name").innerText = name
+    </script>
+
+</body>
+</html>
