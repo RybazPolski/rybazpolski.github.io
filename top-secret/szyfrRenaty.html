@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szyfr Renaty</title>
+    <link rel="icon" href="szyfrRenaty.png">
+</head>
+<body>
+    <input type="text" id="input" placeholder="mentos">
+    <button onclick="reverse(document.getElementById('input').value)">Szyfruj!</button><br>
+    <input type="text" id="output" readonly="readonly" placeholder="sotnem"><br>
+    <button id="clear" onclick="reset()">WYCZYŚĆ</button><button onclick="copy()">Kopiuj</button><span id="confirm" style="color: green;"></span>
+
+    <script>
+
+        function reverse(input){
+            var i = 0;
+            var output = ""
+            while(input[i]){
+                output = output + input[input.length-i-1];
+                i++;
+            }
+            document.getElementById("output").value = output
+
+
+            document.getElementById("confirm").style.transitionDuration = "0s"
+            document.getElementById("confirm").innerText = ""
+            document.getElementById("confirm").style.opacity = 1
+        }
+
+        function copy() {
+            var copyText = document.getElementById("output");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            if(copyText.value!==""){
+                document.getElementById("confirm").style.transitionDuration = "2s"
+                document.getElementById("confirm").innerHTML = " &#10004 Skopiowano"
+                document.getElementById("confirm").style.opacity = 0
+            }
+        }
+
+        function reset(){
+            document.getElementById("input").value = null
+            document.getElementById("output").value = null
+        }
+
+    </script>
+</body>
+</html>
