@@ -17,37 +17,51 @@
         }
         #header{
             position: absolute;
-            top: 5%;
+            top: 10%;
             right: 5%;
-            font-size: 3vh;
+            font-size: 3.5vh;
         }
         #sign{
             position: absolute;
-            bottom: ;
+            bottom: 22.5%;
+            right: 15%;
+            font-size: 3vh;
+        }
+        #content{
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            font-size: 1.75vh;
+            text-align: left;
+            right: 5%;
+
         }
     </style>
 </head>
 <body>
 
     <script>
-        // if(prompt("Hasło: ")!=="brak"){
-        //     window.stop()
-        // }
+        if(prompt("Hasło: ")!=="Masło"){
+            window.stop()
+        }else{
+            var name = prompt("Podaj imię")
+        }
 
-        var name = prompt("Podaj imię")
     </script>
 
 
     <div id="img">
         <img width="100%" src="./uro2021bg.jpg" alt="Coś się zrąbało">
         <div id="header">
-            <b>Siemka <span id="name"></span>!</b>
+            <b>Siema <span id="name"></span>!</b>
         </div>
         <div id="content">
-            
+            <p>28 października kończę 15 lat i z tej okazji chciałbym Cię zaprosić na chatę do Puszczykowa, w piątek 5 listopada po lekcjach, pojechalibyśmy razem pociągiem (bilet powrotny na pociąg 7zł)</p>
+            <p>Na chacie mam gry planszowe, karcianki, ruchowe (Kinect) i VR (Oculus), w które możnaby zagrać, no i oczywiście zamówiłoby się pizzę do zżarcia :D</p>
+            <p>Będzie mi miło jeśli wpadniesz!</p>
         </div>
         <div id="sign">
-            
+            - Ryba &#60&#62&#60
         </div>
     </div>
 
