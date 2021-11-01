@@ -1,0 +1,152 @@
+@font-face{font-family:comic sans ms;font-style:normal;font-weight:400;src:local('Comic Sans MS'),local('ComicSansMS-Regular'),url(https://rybazpolski.github.io/fonts/comic-sans-ms_53a8778a817839ef2dbc5dc94ce14334.woff) format('woff'),url(https://rybazpolski.github.io/fonts/comic-sans-ms_53a8778a817839ef2dbc5dc94ce14334.ttf) format('truetype')}
+
+body {
+    background: lightskyblue;
+    z-index: 0;
+    font-family: "Comic Sans MS", "Comic Sans", arial;
+}
+
+table, td, tr{
+    border-collapse: collapse;
+}
+  
+.korporal{
+    float: left;
+    border-collapse: collapse;
+}
+.korporalRight{
+    float: left;
+}
+  
+  
+.toolbar{
+    border-collapse: collapse;
+    float: right; 
+}
+
+
+.fillPatena {
+  background-image: url('./patena.png');
+  background-size: contain;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.fillPalka {
+  background-image: url('./palka.png');
+  background-size: contain;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.fillKielich {
+  background-image: url('./kielich.png');
+  background-size: contain;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.fillPuryfikaterz {
+  background-image: url('./puryfikaterz.png');
+  background-size: contain;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.hold {
+  border: solid 5px #ccc;
+}
+
+.empty {
+  display: inline-block;
+  height: 160px;
+  width: 160px;
+  border: solid 1px lightgray;
+  background: white;
+  z-index: -1;
+}
+
+.hovered {
+  background: #f4f4f4;
+  border-style: dashed;
+}
+
+#confirm{
+    width: 150px;
+    height: 75px;
+    font-size: 24px;
+    margin-left: 170px;
+    margin-top: 15px;
+    border-radius: 25px;
+    font-family: "Comic Sans MS", "Comic Sans", arial;
+}
+
+#blackbg{
+  background-color: black;
+  display: none;
+  opacity: 75%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  margin-left: -8px;
+  margin-top: -21.9vh;
+  pointer-events: none;
+  position: absolute;
+}
+
+#result{
+  position: relative;
+  display: block;
+  color: white;
+  z-index: 10;
+}
+
+#face{
+  margin-left: 25vw;
+  width: 30vh;
+  display: block;
+  position: absolute;
+  z-index: 20;
+  top: 10vh;
+}
+#winlose{
+  margin-left: -15vh;
+  border-radius: 10px;
+  width: 50vw;
+  height: 30vh;
+  font-size: 5vw;
+  display: inline;
+  padding: 2vh 2vw;
+}
+#tryagain{
+  margin-top: 13vh;
+  margin-left: -18vh;
+  border-radius: 10px;
+  width: 17vw;
+  height: 7vh;
+  font-size: 2vw;
+  display: inline;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  position: absolute;
+}
+#tryagain > a{
+  color: white;
+  pointer-events: all;
+}

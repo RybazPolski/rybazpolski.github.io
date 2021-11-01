@@ -5,94 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kielich the Game</title>
-
-    <style>
-        body {
-  background: lightskyblue;
-}
-
-.korporal{
-    float: left;
-    border-collapse: collapse;
-}
-.korporalRight{
-    float: left;
-}
-
-
-.toolbar{
-    border-collapse: collapse;
-    float: right; 
-}
-
-
-.fillPatena {
-  background-image: url('./patena.png');
-  background-size: contain;
-  position: relative;
-  height: 150px;
-  width: 150px;
-  top: 5px;
-  left: 5px;
-  cursor: pointer;
-}
-
-.fillPalka {
-  background-image: url('./palka.png');
-  background-size: contain;
-  position: relative;
-  height: 150px;
-  width: 150px;
-  top: 5px;
-  left: 5px;
-  cursor: pointer;
-}
-
-.fillKielich {
-  background-image: url('./kielich.png');
-  background-size: contain;
-  position: relative;
-  height: 150px;
-  width: 150px;
-  top: 5px;
-  left: 5px;
-  cursor: pointer;
-}
-
-.fillPuryfikaterz {
-  background-image: url('./puryfikaterz.png');
-  background-size: contain;
-  position: relative;
-  height: 150px;
-  width: 150px;
-  top: 5px;
-  left: 5px;
-  cursor: pointer;
-}
-
-.hold {
-  border: solid 5px #ccc;
-}
-
-.empty {
-  display: inline-block;
-  height: 160px;
-  width: 160px;
-  border: solid 1px lightgray;
-  background: white;
-}
-
-.hovered {
-  background: #f4f4f4;
-  border-style: dashed;
-}
-
-
-    </style>
+    <link rel="stylesheet" href="kielichTheGame.css">
 
 </head>
 <body>
-    
+
     <table class="korporal">
         <tr>
             <td class="empty">
@@ -126,18 +43,24 @@
             <td class="empty">
             </td>
         </tr>
+        <tr>
+            <td rowspan="3">
+                <button id="confirm" onclick="check()">Rozłożone!</button>
+            </td>
+        </tr>
+
     </table>
     <table class="korporalRight">
             <tr>
-                <td class="empty" style="background-color: lightskyblue; border: none;" id="palkaCorrect">
+                <td class="empty" style="background-color: lightskyblue; border: lightblue 2px dotted;" id="palkaCorrect">
                 </td>
             </tr>
             <tr>
-                <td class="empty" style="background-color: lightskyblue; border: none;" id="kielichCorrect">
+                <td class="empty" style="background-color: lightskyblue; border: lightblue 2px dotted;" id="kielichCorrect">
                 </td>
             </tr>
             <tr>
-                <td class="empty" style="background-color: lightskyblue; border: none;" id="puryfikaterzCorrect">
+                <td class="empty" style="background-color: lightskyblue; border: lightblue 2px dotted;" id="puryfikaterzCorrect">
                 </td>
             </tr>
     </table>
@@ -168,9 +91,13 @@
         </tr>
         
 </table>
-    
-
-
+<footer>
+    Jako że zrobiłem wielki syf w CSS (stylu strony), sugeruję używać w zmaksymalizowanym oknie przeglądarki komputerowej
+</footer>
       <script src="kielichTheGame.js"></script>
+    <div id="bgres">
+        <div id="result"></div>
+        <div id="blackbg"></div>
+    </div>
 </body>
 </html>
