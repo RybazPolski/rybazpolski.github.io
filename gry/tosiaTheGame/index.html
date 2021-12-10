@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozdział 2</title>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="./gameFramework.js"></script>
+    <style>
+        *{
+            font-family: 'consolas';
+        }
+    </style>
+</head>
+<body>
+
+    <div id="myGame"></div>
+    <div id="startButton" style="width: 640px; height: 480px; background-image: url(./tosiaSplash.png);"></div>
+
+
+    <script>
+
+        $(function() {
+            var bgAnim = new gf.animation({
+                url: "background.png"
+            });
+            var pencilsAnim = new gf.animation({
+                url: "pencils.png"
+            });
+            var pencilsAnim2 = new gf.animation({
+                url: "pencils2.png"
+            });
+            var bugsAnim = new gf.animation({
+                url: "pasikonik.png"
+            });
+            var playerAnim = new gf.animation({
+                url: "tosiaIdleLeft.png"
+            });
+
+            var initialize = function(){
+                $('#myGame').append("<div id='container' style='display:none; width: 640px; height: 480px;'>");
+                gf.addSprite("container", "background",{width:640,height:480});                    
+                gf.addSprite("container", "pencils1",{width:640,height:40,y:400});                    
+                gf.addSprite("container", "pencils2",{width:640,height:40,y:330});                    
+                gf.addSprite("container", "pencils3",{width:640,height:40,y:260});
+                // empty (rest)
+                gf.addSprite("container", "bugs1",{width:640,height:60,y:170});
+                gf.addSprite("container", "bugs2",{width:640,height:60,y:100});
+                gf.addSprite("container", "bugs3",{width:640,height:60,y:30});
+                gf.addSprite("container", "player",{width:48,height:48,y:432, x:260});
+                
+                gf.setAnim("background",bgAnim);
+                gf.setAnim("player",playerAnim);
+                gf.setAnim("pencils1",pencilsAnim);
+                gf.setAnim("pencils2",pencilsAnim);
+                gf.setAnim("pencils3",pencilsAnim2);
+                gf.setAnim("bugs1",bugsAnim);
+                gf.setAnim("bugs2",bugsAnim);
+                gf.setAnim("bugs3",bugsAnim);
+
+                $("#startButton").remove();
+                $("#container").append("<div id='lifes' style='position: relative; color:#000;'><div style='background-image:url(life.png);width:32px;height:32px;display:inline-block;'></div><div style='background-image:url(life.png);width:32px;height:32px;display:inline-block;'></div><div style='background-image:url(life.png);width:32px;height:32px;display:inline-block;'></div></div>").css("display","block");
+                setInterval(gameLoop, 100);
+            }
+
+            $("#startButton").click(function(){
+                gf.startPreloading(initialize)
+            })
+        });
+
+        var screenWidth = 640;
+        var pencils1 = {
+            position: 300,
+            speed: 8
+        }
+        var pencils2 = {
+            position: 100,
+            speed: 4
+        }
+        var pencils3 = {
+            position: 300,
+            speed: -5
+        }
+        var bugs1 = {
+            position: 200,
+            speed: -10
+        }
+        var bugs2 = {
+            position: 350,
+            speed: -15
+        }
+        var bugs3 = {
+            position: 300,
+            speed: -8
+        }
+        
+        var tosiaLeftAnim = new gf.animation({
+            url: "./tosiaAnimationLeft.png",
+            numOfFrames: 3,
+            curFrame: 0,
+            rate: 200,
+            width: 48,
+            loop: true
+        })
+        var tosiaRightAnim = new gf.animation({
+            url: "./tosiaAnimationRight.png",
+            numOfFrames: 3,
+            curFrame: 0,
+            rate: 200,
+            width: 48,
+            loop: true
+        })
+
+
+        var gameState = "START";
+        var gameLoop = function(){
+            
+            pencils1.position +=pencils1.speed;
+            $("#pencils1").css("background-position",""+pencils1.position+"px 0px");
+            
+            pencils2.position +=pencils2.speed;
+            $("#pencils2").css("background-position",""+pencils2.position+"px 0px");
+            
+            pencils3.position +=pencils3.speed;
+            $("#pencils3").css("background-position",""+pencils3.position+"px 0px");
+
+            bugs1.position +=bugs1.speed;
+            $("#bugs1").css("background-position",""+bugs1.position+"px 0px");
+
+            bugs2.position +=bugs2.speed;
+            $("#bugs2").css("background-position",""+bugs2.position+"px 0px");
+
+            bugs3.position +=bugs3.speed;
+            $("#bugs3").css("background-position",""+bugs3.position+"px 0px");
+
+            var newPos = gf.x("player");
+            switch(gameState){
+                case "LINE1":
+                    newPos += pencils1.speed;
+                    break;
+                case "LINE2":
+                    newPos += pencils2.speed;
+                    break;
+                case "LINE3":
+                    newPos += pencils3.speed;
+                    break;
+            }
+            if(newPos > screenWidth || newPos < -40 ){
+                newPos = 260;
+                kill();
+            }else{
+                if(!detectSafe(gameState)){
+                    kill();
+                }
+            }
+            gf.x("player",newPos);
+        };
+
+        var canMove = true;
+        let curAnim = tosiaRightAnim;
+        // Reakcja na klawisze
+        $(document).keydown(function(e){
+            if(gameState!="WON"&&gameState!="GAMEOVER"&&canMove){
+                canMove = false;
+                switch(e.keyCode){
+                    case 65: //A
+                    case 37: //arrowLeft
+                        curAnim = tosiaLeftAnim;
+                        gf.setAnim("player",curAnim,0)
+                        gf.x("player", gf.x("player") - 10);
+                        break;
+                    case 68: //D
+                    case 39: //arrowRight
+                        curAnim = tosiaRightAnim;
+                        gf.setAnim("player",curAnim,0)
+                        gf.x("player", gf.x("player") + 10);
+                        break;
+                    case 87: //W
+                    case 38: //arrowUp
+                        gf.setAnim("player",curAnim,0)
+                        switch(gameState){
+                            case "START":
+                                $("#player").animate({top:392},function(){
+                                    gameState = "LINE1";
+                                });
+                                break;
+                            case "LINE1":
+                                $("#player").animate({top:322},function(){
+                                    gameState = "LINE2";
+                                });
+                                break;
+                            case "LINE2":
+                                $("#player").animate({top:252},function(){
+                                    gameState = "LINE3";
+                                });
+                                break;
+                            case "LINE3":
+                                $("#player").animate({top:212},function(){
+                                    gameState = "REST";
+                                });
+                                break;
+                            case "REST":
+                                $("#player").animate({top:172},function(){
+                                    gameState = "LINE4";
+                                });
+                                break;
+                            case "LINE4":
+                                $("#player").animate({top:102},function(){
+                                    gameState = "LINE5";
+                                });
+                                break;
+                            case "LINE5":
+                                $("#player").animate({top:32},function(){
+                                    gameState = "LINE6";
+                                });
+                                break;
+                            case "LINE6":
+                                $("#player").animate({top:-8},function(){
+                                    gameState = "WON";
+                                    $("#lifes").html("You won!");
+                                    setTimeout(function(){
+                                        $('body').append('<a href="./index.html"><div style="width: 640px; height: 480px; background-image: url(./tosiaSplashWin.png);"></div></a>');
+                                        $("#container").remove()
+                                    },1500)
+                                });
+                                break;
+                        }
+                        break;
+                    case 83: // S
+                    case 40: // arrowDown
+                        gf.setAnim("player",curAnim,0)
+                        switch(gameState){
+                            case "LINE1":
+                                $('#player').animate({top:432},function(){
+                                    gameState = "START";
+                                })
+                                break;
+                            case "LINE2":
+                                $('#player').animate({top:392},function(){
+                                    gameState = "LINE1";
+                                })
+                                break;
+                            case "LINE3":
+                                $('#player').animate({top:322},function(){
+                                    gameState = "LINE2";
+                                })
+                                break;
+                            case "REST":
+                                $('#player').animate({top:252},function(){
+                                    gameState = "LINE3";
+                                })
+                                break;
+                            case "LINE4":
+                                $('#player').animate({top:212},function(){
+                                    gameState = "REST";
+                                })
+                                break;               
+                            case "LINE5":
+                                $('#player').animate({top:172},function(){
+                                    gameState = "LINE4";
+                                })
+                                break;                
+                            case "LINE6":
+                                $('#player').animate({top:102},function(){
+                                    gameState = "LINE5";
+                                })
+                                break;     
+                        }
+                        break;
+                }
+            }
+        })
+        $(document).keyup(function(){
+            canMove = true;
+            var tosiaLeftAnim = new gf.animation({
+                url: "./tosiaAnimationLeft.png",
+                numOfFrames: 3,
+                curFrame: 0,
+                rate: 200,
+                width: 48,
+                loop: true
+            })
+            var tosiaRightAnim = new gf.animation({
+                url: "./tosiaAnimationRight.png",
+                numOfFrames: 3,
+                curFrame: 0,
+                rate: 200,
+                width: 48,
+                loop: true
+            })
+        })
+
+        var detectSafe = function(state){
+            switch(state){
+                case "LINE1":
+                    var relPos = (gf.x("player") - pencils1.position) % 230;
+                    relPos = (relPos < 0) ? relPos + 230 : relPos;
+                    if(relPos > 110 && relPos < 210){return true;}else{return false;}
+                    break;
+                case "LINE2":
+                    var relPos = (gf.x("player") - pencils2.position) % 230;
+                    relPos = (relPos < 0) ? relPos + 230 : relPos;
+                    if(relPos > 110 && relPos < 210){return true;}else{return false;}
+                    break;
+                case "LINE3":
+                    var relPos = (gf.x("player") - pencils3.position) % 230;
+                    relPos = (relPos < 0) ? relPos + 230 : relPos;
+                    if(relPos > 110 && relPos < 210){return true;}else{return false;}
+                    break;
+                case "LINE4":
+                    var relPos = (gf.x("player") - bugs1.position) % 230;
+                    relPos = (relPos<0)?relPos+190:relPos;
+                    if(relPos<130){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    break;
+                case "LINE5":
+                    var relPos = (gf.x("player") - bugs2.position) % 230;
+                    relPos = (relPos<0)?relPos+230:relPos;
+                    if(relPos<150){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    break;                    
+                case "LINE6":
+                    var relPos = (gf.x("player") - bugs3.position) % 230;
+                    relPos = (relPos<0)?relPos+230:relPos;
+                    if(relPos<130){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+
+        function lifeDisplayer(lifes,maxLifes){
+            var displayLifes = "";
+            for(var i=1;i<=lifes;i++){
+                displayLifes += "<div style='background-image:url(life.png);width:32px;height:32px;display:inline-block;'></div>";
+            }
+            for(var i=1;i<=maxLifes-lifes;i++){
+                displayLifes += "<div style='background-image:url(noLife.png);width:32px;height:32px;display:inline-block;'></div>";
+            }
+            return displayLifes;
+        };
+
+        var life = 3;
+        var kill = function(){
+            life --;
+            if(!life){
+                gameState="GAMEOVER";
+                $('#lifes').html(lifeDisplayer(life,3))
+                setTimeout(function(){
+                    $('body').append('<a href="./index.html"><div style="width: 640px; height: 480px; background-image: url(./tosiaSplashGameOver.png);"></div></a>');
+                    $("#container").remove()
+                },1500)
+            }else{
+                $('#lifes').html(lifeDisplayer(life,3));
+                switch(gameState){
+                    case "START":
+                    case "LINE1":
+                    case "LINE2":
+                    case "LINE3":
+                        gf.x("player",260);
+                        gf.y("player",432);
+                        gameState = "START"
+                        newPos = 260;
+                        break;
+                    case "REST":
+                    case "LINE4":
+                    case "LINE5":
+                    case "LINE6":
+                        gf.x("player",260);
+                        gf.y("player",212);
+                        gameState="REST"
+                        newPos = 260;
+                        break;
+                }
+            }
+        };
+
+    </script>
+    
+</body>
+</html>
