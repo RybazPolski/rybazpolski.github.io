@@ -98,19 +98,17 @@
         
         var tosiaLeftAnim = new gf.animation({
             url: "./tosiaAnimationLeft.png",
-            numOfFrames: 3,
+            numOfFrames: 2,
             curFrame: 0,
             rate: 200,
-            width: 48,
-            loop: true
+            width: 48
         })
         var tosiaRightAnim = new gf.animation({
             url: "./tosiaAnimationRight.png",
-            numOfFrames: 3,
+            numOfFrames: 2,
             curFrame: 0,
             rate: 200,
-            width: 48,
-            loop: true
+            width: 48
         })
 
 
@@ -159,27 +157,36 @@
         };
 
         var canMove = true;
-        let curAnim = tosiaRightAnim;
+        var curAnim = Object.assign({}, tosiaRightAnim);
+        var playerDir = ""; 
         // Reakcja na klawisze
         $(document).keydown(function(e){
             if(gameState!="WON"&&gameState!="GAMEOVER"&&canMove){
                 canMove = false;
+                $("#player").css("backgroundPosition",0)
                 switch(e.keyCode){
                     case 65: //A
                     case 37: //arrowLeft
-                        curAnim = tosiaLeftAnim;
-                        gf.setAnim("player",curAnim,0)
+                        playerDir = "left";
+                        curAnim = Object.assign({}, tosiaLeftAnim);
+                        gf.setAnim("player",curAnim)
                         gf.x("player", gf.x("player") - 10);
                         break;
                     case 68: //D
                     case 39: //arrowRight
-                        curAnim = tosiaRightAnim;
-                        gf.setAnim("player",curAnim,0)
+                        playerDir = "right";
+                        curAnim = Object.assign({}, tosiaRightAnim);
+                        gf.setAnim("player",curAnim)
                         gf.x("player", gf.x("player") + 10);
                         break;
                     case 87: //W
                     case 38: //arrowUp
-                        gf.setAnim("player",curAnim,0)
+                        if(playerDir=="left"){
+                            curAnim = Object.assign({}, tosiaLeftAnim);
+                        }else{
+                            curAnim = Object.assign({}, tosiaRightAnim);
+                        }
+                        gf.setAnim("player",curAnim)
                         switch(gameState){
                             case "START":
                                 $("#player").animate({top:392},function(){
@@ -230,6 +237,11 @@
                         break;
                     case 83: // S
                     case 40: // arrowDown
+                        if(playerDir=="left"){
+                                curAnim = Object.assign({}, tosiaLeftAnim);
+                            }else{
+                                curAnim = Object.assign({}, tosiaRightAnim);
+                            }
                         gf.setAnim("player",curAnim,0)
                         switch(gameState){
                             case "LINE1":
@@ -353,7 +365,7 @@
 
         var life = 3;
         var kill = function(){
-            life --;
+            if(life){life--};
             if(!life){
                 gameState="GAMEOVER";
                 $('#lifes').html(lifeDisplayer(life,3))

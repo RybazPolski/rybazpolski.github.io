@@ -25,7 +25,6 @@ gf.startPreloading = function(endCallback, progressCallBack){
 				counter++
 			}
 			if(counter>=total){
-				// Pobieranie zakończone!
 				if(progressCallBack){
 					progressCallBack((counter/total)*100);
 				}
@@ -65,7 +64,7 @@ gf.animation = function(options){
 
 gf.animHandles = []
 
-gf.setAnim = function(divId, anim, loop, curFrame){
+gf.setAnim = function(divId, anim, loop){
     if(gf.animHandles[divId]){
         clearInterval(gf.animHandles[divId]);
     }
@@ -74,13 +73,12 @@ gf.setAnim = function(divId, anim, loop, curFrame){
     }
     if(anim.numOfFrames){
         gf.animHandles[divId] = setInterval(function(){
-            if(!curFrame){curFrame=anim.curFrame};
-            curFrame++; 
-            if(!loop&&curFrame>=anim.numOfFrames){
+            anim.curFrame++; 
+            if(!loop&&anim.curFrame==anim.numOfFrames){
                 clearInterval(gf.animHandles[divId]);
                 gf.animHandles[divId] = false;
             } else {
-                curFrame %= anim.numOfFrames;
+                anim.curFrame %= anim.numOfFrames;
                 gf.setFrame(divId, anim)
             }
         }, anim.rate)
