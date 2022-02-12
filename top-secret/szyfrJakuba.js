@@ -37,7 +37,7 @@ function szyfruj(){
         
     }
     result = szyfr
-    console.log("Szyfred: "+szyfr)
+    // console.log("Szyfred: "+szyfr)
     document.getElementById("akcja").innerText = "Zaszyfrowane: "
     document.getElementById("result").value = szyfr
     document.getElementById("confirm").style.transitionDuration = "0s"
@@ -75,7 +75,7 @@ function deszyfruj(){
         }
     }
     result = deszyfr
-    console.log("Deszyfred: "+deszyfr)
+    // console.log("Deszyfred: "+deszyfr)
     document.getElementById("akcja").innerText = "Rozszyfrowane: "
     document.getElementById("result").value = deszyfr
     document.getElementById("confirm").style.transitionDuration = "0s"
@@ -119,5 +119,11 @@ function advanced(){
 }
 function confirmKey(){
     klucz = parseInt(document.getElementById("klucz").value)%32
-    console.log("Nowy klucz: "+ klucz)
+    // console.log("Nowy klucz: "+ klucz)
 }
+
+function changeKey(step){
+    document.getElementById("klucz").value = parseInt(document.getElementById("klucz").value)+step
+    confirmKey()
+}
+
