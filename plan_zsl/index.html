@@ -7,6 +7,9 @@
     <title>Wyszukiwanie w planie lekcji</title>
     <link rel="icon" href="icon.png">
     <style>
+            body{
+                    background-color: rgb(175, 224, 255);
+            }
         .dragBookmark{
           font-size: 14px;
           font-family: helvetica neue,arial, sans-serif;
@@ -275,9 +278,9 @@
     void(0);
     
     '></a>
-    <a href="https://github.com/RybazPolski/rybazpolski.github.io/blob/master/plan_zsl/bookmarklet.js"> > kod bookmarkleta <</a>
-    <a onclick="show()" id="show" style="text-decoration: underline; color: blue; cursor: pointer;"><br>Korzystam z telefonu</a><span id="mobileGuide" style="display: none;">
-    <h3>Jeżeli korzystasz z przegląrki mobilnej, możesz kliknąć poniższy przycisk aby skopiować link.<br> Następnie utwórz zakładkę, w której jako adres wkleisz skopiowany kod</h3><h3>Gdy to zrobisz, aby skorzystać z funkcji, otwórz szkolny plan lekcji, wyszukaj zakładkę według nazwy którą jej nadałeś i kliknij ją.</h3><button onclick="copyCode()">Kopiuj!</button>
+    <a href="https://github.com/RybazPolski/rybazpolski.github.io/blob/master/plan_zsl/bookmarklet.js"> > kod bookmarkleta <</a><br><br>
+    <a onclick="show()" id="show" style="text-decoration: underline; color: blue; cursor: pointer;"><br>Korzystam z telefonu</a><span id="mobileGuide" style="display: none; background-color: rgb(176, 241, 176); border: 5px solid rgb(176, 241, 176);">
+    <h3>Jeżeli korzystasz z przegląrki mobilnej, możesz kliknąć poniższy przycisk aby skopiować link.<br> Następnie utwórz zakładkę, w której jako adres wkleisz skopiowany kod</h3><button onclick="copyCode()">Kopiuj!</button><h3>Gdy to zrobisz, aby skorzystać z funkcji, otwórz szkolny plan lekcji, wyszukaj zakładkę według nazwy którą jej nadałeś i kliknij ją.</h3><img width="50%" src="./mobileGuide.jpg">
     </span>
     <script>
             function copyCode(){
