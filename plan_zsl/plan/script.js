@@ -186,9 +186,9 @@ function searchPlan(){
     var satisfy = [];
     var q = document.getElementById("query").value;
     if(q.length==0){
-      document.getElementById("quered").innerHTML=%27<span style="color: red;">Wpisz zapytanie wyszukiwania!</span>%27;
+      document.getElementById("quered").innerHTML='<span style="color: red;">Wpisz zapytanie wyszukiwania!</span>';
     }else{
-      document.getElementById("quered").innerHTML=q+%27 - plan lekcji%27;
+      document.getElementById("quered").innerHTML=q+' - plan lekcji';
       var plan = document.querySelectorAll(".lekcja");
       for(el[i] of plan){
           if(el[i].innerHTML.search(q)!=-1){
@@ -197,7 +197,7 @@ function searchPlan(){
           i++;
       }
     
-      var puste = %27<td style="width:17%;" class="lekcja"></td>%27;
+      var puste = '<td style="width:17%;" class="lekcja"></td>';
       var dodatkowe = document.querySelectorAll(".qLekcja");
     
       for(var clr of dodatkowe){
@@ -206,7 +206,7 @@ function searchPlan(){
     
       var dodatkowe = document.querySelectorAll(".qLekcja");
       for(var index of satisfy){
-          dodatkowe[index %25 75].innerHTML = plan[index].innerHTML ;
+          dodatkowe[index % 75].innerHTML = plan[index].innerHTML ;
       }
     }
   }
