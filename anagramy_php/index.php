@@ -104,6 +104,7 @@
         }
         
         $conn = mysqli_connect("localhost","root","","sjp");
+        mysqli_set_charset($conn,'utf8');
         $res = mysqli_query($conn,$q);
         $found = false;
         while($rec=mysqli_fetch_row($res)){
