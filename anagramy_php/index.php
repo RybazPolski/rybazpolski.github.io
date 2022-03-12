@@ -88,7 +88,7 @@
 
     if(isset($_GET['key'])&&!empty($_GET['key'])){
         
-        $key=$_GET['key'];
+        $key=htmlentities($_GET['key'], ENT_QUOTES);
         echo "<h3>Anagramy dla $key:</h3><ul>";
         
         $length = strlen($key);
