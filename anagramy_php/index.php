@@ -69,7 +69,7 @@
             <label style="user-select: none" onclick="checkCheckbox('notfull')">Anagramy niepełne</label><input type="checkbox" name="notfull" id="notfull" value="1" <?php
             if(isset($_GET['notfull'])){echo "checked";}
             ?>><br>
-        </form><br><br>
+        </form><br><span><a style="color: gray; font-style: italic;" href="https://sjp.pl/slownik/lp.phtml">/*Lista słów pochodzi ze strony sjp.pl*/</a></span><br>
     </div>
     <div class="right"><?php
 
