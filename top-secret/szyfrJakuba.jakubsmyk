@@ -1,4 +1,30 @@
-var alfabetPolski = ["a", "ą", "b", "c", "ć", "d", "e", "ę", "f", "g", "h", "i", "j", "k", "l", "ł", "m", "n", "ń", "o", "ó", "p", "r", "s", "ś", "t", "u", "w", "y", "z", "ź", "ż"]
+// var alfabet = ["a", "ą", "b", "c", "ć", "d", "e", "ę", "f", "g", "h", "i", "j", "k", "l", "ł", "m", "n", "ń", "o", "ó", "p", "r", "s", "ś", "t", "u", "w", "y", "z", "ź", "ż"]
+var alfabet = "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
+function setAlphabeth(whichOne) {
+    switch(whichOne){
+        case "pl":
+            alfabet = "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
+            break;
+        case "en":
+            alfabet = "abcdefghijklmnopqrstuvwxyz";
+            break;
+        case "en-pl":
+            alfabet = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+            break;
+        case "custom":
+            custom = document.getElementById("customAlphabeth").value;
+            alfabet = custom=="" ? "abcdefghijklmnopqrstuvwxyz" : custom.toLowerCase();
+            break;    
+        default:
+            alfabet = "aąbcćdeęfghijklłmnńoóprsśtuwyzźż";
+            break;
+    }
+}
+function customAlphabeth(){
+    document.getElementById("customAlphabethRadio").click()
+    setAlphabeth("custom");
+
+}
 
 var input
 var n
@@ -12,24 +38,24 @@ function szyfruj(){
     input = document.getElementById("input").value
     for(i = 0; i < input.length; i++){
         n = 0
-        while(alfabetPolski[n] !== input[i].toLowerCase()&&n<32){
+        while(alfabet[n] !== input[i].toLowerCase()&&n<alfabet.length){
             n++
         }
         
-        if(n==32){
+        if(n==alfabet.length){
             szyfr = szyfr + input[i]
         }else{
-            if(alfabetPolski[n+klucz]==undefined){
+            if(alfabet[n+klucz]==undefined){
                 if(input[i]==input[i].toUpperCase()){
-                    szyfr = szyfr + alfabetPolski[n+klucz-32].toUpperCase()
+                    szyfr = szyfr + alfabet[n+klucz-alfabet.length].toUpperCase()
                 }else{
-                    szyfr = szyfr + alfabetPolski[n+klucz-32]
+                    szyfr = szyfr + alfabet[n+klucz-alfabet.length]
                 }
             }else{
                 if(input[i]==input[i].toUpperCase()){
-                    szyfr = szyfr + alfabetPolski[n+klucz].toUpperCase()
+                    szyfr = szyfr + alfabet[n+klucz].toUpperCase()
                 }else{
-                    szyfr = szyfr + alfabetPolski[n+klucz]
+                    szyfr = szyfr + alfabet[n+klucz]
                 }
                 
             }
@@ -51,25 +77,25 @@ function deszyfruj(){
     input = document.getElementById("input").value
     for(i = 0; i < input.length; i++){
         n = 0
-        while(alfabetPolski[n] !== input[i].toLowerCase()&&n<32){
+        while(alfabet[n] !== input[i].toLowerCase()&&n<alfabet.length){
             n++
         }
         
 
-        if(n==32){
+        if(n==alfabet.length){
             deszyfr = deszyfr + input[i]
         }else{
-            if(alfabetPolski[n-klucz]==undefined){
+            if(alfabet[n-klucz]==undefined){
                 if(input[i]==input[i].toUpperCase()){
-                    deszyfr = deszyfr + alfabetPolski[32-Math.abs(n-klucz)].toUpperCase()
+                    deszyfr = deszyfr + alfabet[alfabet.length-Math.abs(n-klucz)].toUpperCase()
                 }else{
-                    deszyfr = deszyfr + alfabetPolski[32-Math.abs(n-klucz)]
+                    deszyfr = deszyfr + alfabet[alfabet.length-Math.abs(n-klucz)]
                 }
             }else{
                 if(input[i]==input[i].toUpperCase()){
-                    deszyfr = deszyfr + alfabetPolski[n-klucz].toUpperCase()
+                    deszyfr = deszyfr + alfabet[n-klucz].toUpperCase()
                 }else{
-                    deszyfr = deszyfr + alfabetPolski[n-klucz]
+                    deszyfr = deszyfr + alfabet[n-klucz]
                 }
             }
         }
@@ -118,7 +144,7 @@ function advanced(){
     }
 }
 function confirmKey(){
-    klucz = parseInt(document.getElementById("klucz").value)%32
+    klucz = parseInt(document.getElementById("klucz").value)%alfabet.length
     // console.log("Nowy klucz: "+ klucz)
 }
 

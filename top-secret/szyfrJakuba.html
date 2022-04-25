@@ -26,6 +26,7 @@
             <button id="advancedButton" onclick="advanced()">&#9660;</button>
             <div id="advanced" style="display: none;">
                 Klucz: <input type="number" id="klucz" value="1" onchange="confirmKey()"><button onclick="changeKey(1)" id="kluczUp"> + </button><button onclick="changeKey(-1)" id="kluczDown"> - </button>
+                &emsp;Alfabet: <input type="radio" name="alfabet" onclick="setAlphabeth('pl')" checked>PL&ensp;<input type="radio" name="alfabet" onclick="setAlphabeth('en')">EN&ensp;<input type="radio" name="alfabet" onclick="setAlphabeth('en-pl')">EN-PL&ensp;<input type="radio" name="alfabet" onclick="setAlphabeth('custom')" id="customAlphabethRadio"><input type="text" placeholder="abcdefghijklmnopqrstuvwxyz" id="customAlphabeth" onchange="customAlphabeth()"><sub style="font-size: small;">(unikaj powtórzeń, pisz małymi literami.)</sub>
             </div>
         </p>
         
