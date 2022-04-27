@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Złap jagódki</title>
+</head>
+<body>
+    <style>
+        body{
+            margin: 0;
+            cursor:grab;
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            background-image: url(./bg.jpg);
+            background-position: bottom;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        #button{
+            background-image: url(jagodki.png);
+            height: 25vmin;
+            width: 47.5vmin;
+            background-size: contain;
+            background-position: right;
+            background-repeat: no-repeat;
+            position: absolute;
+            transition-duration: 1s;
+            left: 0;
+            top: calc(50vh - calc( 25vmin/2 ));
+            transform: rotate(0deg);
+        }
+        #win, #ban{
+            /* background-color: red; */
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            z-index: 100;
+            color: white;
+            height: 65vh;
+            width: 96vw;
+            display: none;
+            float: left;
+            padding-top: 35vh;
+            padding-left: 2vw;
+            padding-right: 2vw;
+            top: 0;
+            left: 0;
+            background-image: url(./win.png);
+            background-size: cover;
+        }
+        #win h1{
+            font-size: 64px;
+        }
+        #ban{
+            height: 60vh;
+            padding-top: 40vh;
+            background-size: auto;
+            background-color: grey;
+            /* color: black; */
+            background-image: url(./ban.png);
+            display: inline;
+            align-content: center;
+        }
+    </style>
+    <div id="ban">
+        <h1>Gra przeznaczona jedynie na urządzenia desktopowe.</h1>
+    </div>
+    <a href="https://youtu.be/uHToZTZimcs" target="_blank" id="link"></a>
+    <!-- <button id="button" style="position: relative;" onclick="win()">Kliknij mnie</button> -->
+    <div id="button" style="position: relative;" onclick="win()"></div>
+    <div id="win"><h1>Wygrałaś!</h1><h2><a style="color: white;" href="./index.html">Zagraj ponownie</a></h2></div>
+    <script>
+
+        const deviceType = () => {
+            const ua = navigator.userAgent;
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+                return "tablet";
+            }
+            else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+                return "mobile";
+            }
+            return "desktop";
+        };
+        //skopiowane z https://attacomsian.com/blog/javascript-detect-mobile-device
+
+        if(deviceType()=="desktop"){
+            document.getElementById('ban').style.display='none'
+        }
+
+        var ready = true;
+        var side = "left";
+
+        var win = ()=>{
+            // document.getElementById('link').click()
+            document.getElementById('win').style.display = "inline";
+            // document.getElementById('button').style.display = "none";
+
+        }
+
+        var randomInt = (min, max)=>{
+            return min + Math.floor(Math.random() * (max+1-min));
+        }
+
+        var changeSide = (curSide)=>{
+            let a = randomInt(0,2)
+            switch(curSide){
+                case "left":
+                    switch(a){
+                        case 0:
+                            side = "top"
+                            break;
+                        case 1:
+                            side = "right"
+                            break;
+                        case 2:
+                            side = "bottom"
+                            break;
+                    }
+                    break;
+                case "right":
+                switch(a){
+                        case 0:
+                            side = "top"
+                            break;
+                        case 1:
+                            side = "left"
+                            break;
+                        case 2:
+                            side = "bottom"
+                            break;
+                    }
+                    break;
+                case "top":
+                switch(a){
+                        case 0:
+                            side = "left"
+                            break;
+                        case 1:
+                            side = "right"
+                            break;
+                        case 2:
+                            side = "bottom"
+                            break;
+                    }
+                    break;
+                case "bottom":
+                switch(a){
+                        case 0:
+                            side = "top"
+                            break;
+                        case 1:
+                            side = "right"
+                            break;
+                        case 2:
+                            side = "left"
+                            break;
+                    }
+                    break;
+            }
+        }
+       
+
+        var escaper = document.getElementById("button").addEventListener("pointerover",()=>{
+            
+            if(ready){
+                ready = false
+                var jagodki = document.getElementById("button")
+                setTimeout(()=>{
+
+                    var vmin = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight 
+                    var maxW = ((window.innerWidth-(0.475*vmin))/window.innerWidth) * 100
+                    var maxH = ((window.innerHeight-(0.25*vmin))/window.innerHeight) * 100
+                    // jagodki.style.left = randomInt(0,Math.floor(maxW))+"vw"
+                    // jagodki.style.top = randomInt(0,Math.floor(maxH))+"vh"
+                    setTimeout(()=>{
+                        
+                        switch(side){
+                            case "left":
+                                jagodki.style.left = "-"+(0.475*vmin)+"vw"
+                                break;
+                            case "right":
+                                jagodki.style.left = "100vw"
+                                break;
+                            case "top":
+                                jagodki.style.top = "-"+(0.475*vmin)+"vh"
+                                break;
+                            case "bottom":
+                                jagodki.style.top = "calc(100vh + 12.5vmin)"
+                                break;
+                        }
+                        
+
+                        setTimeout(()=>{
+                            ready = true
+                            changeSide(side)
+                            switch(side){
+                                case "left":
+                                    jagodki.style.transitionDuration = "0s"
+                                    jagodki.style.transform = "rotate(0deg)"
+                                    jagodki.style.left = "-"+(0.475*vmin)+"vw"
+                                    jagodki.style.top = randomInt(0,Math.floor(maxH))+"vh"
+                                    setTimeout(()=>{
+                                        jagodki.style.transitionDuration = "1s"
+                                        jagodki.style.left = "0vw"
+                                    },10)
+                                    break;
+                                case "right":
+                                    jagodki.style.transitionDuration = "0s"
+                                    jagodki.style.transform = "rotate(180deg)"
+                                    jagodki.style.left = "100vw"
+                                    jagodki.style.top = randomInt(0,Math.floor(maxH))+"vh"
+                                    setTimeout(()=>{
+                                        jagodki.style.transitionDuration = "0.4s"
+                                        jagodki.style.left = maxW+"vw"
+                                    },10)
+                                    break;
+                                case "top":
+                                    jagodki.style.transitionDuration = "0s"
+                                    jagodki.style.transform = "rotate(90deg)"
+                                    jagodki.style.top = "-"+(0.475*vmin)+"vh"
+                                    jagodki.style.left = randomInt(0,Math.floor(maxW))+"vw"
+                                    setTimeout(()=>{
+                                        jagodki.style.transitionDuration = "0.8s"
+                                        jagodki.style.top = "11vmin"
+                                    },10)
+                                    break;
+                                case "bottom":
+                                    jagodki.style.transitionDuration = "0s"
+                                    jagodki.style.transform = "rotate(270deg)"
+                                    jagodki.style.top = "calc(100vh + 12.5vmin)"
+                                    jagodki.style.left = randomInt(0,Math.floor(maxW))+"vw"
+                                    setTimeout(()=>{
+                                        jagodki.style.transitionDuration = "0.4s"
+                                        jagodki.style.top = "calc(100vh - 47.5vmin + 11.5vmin)"
+                                    },10)
+                                    break;
+                            } 
+                        },400)
+                    },100)    
+                
+                },0)
+
+            }
+        })
+
+        // removeEventListener(escaper)
+
+    </script>    
+
+</body>
+</html>
