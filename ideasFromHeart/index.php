@@ -115,6 +115,7 @@
         
         <?php
         $conn = new mysqli('localhost','root','','ideas');
+        $conn->set_charset('utf8');
         $res = $conn->query("SELECT * FROM `ideas` ORDER BY RAND()");
         while($obj = $res->fetch_object()){
             echo "<div class='el ".$obj->state."' id='".$obj->id."' onclick='reval(this)'>".$obj->idea."</div>";
