@@ -106,7 +106,7 @@
             z-index: 100;
             display: inline;
             left: calc(50% + 25vmin);
-            top: 90vmin;
+            top: 85vmin;
         }
         </style>
 </head>
