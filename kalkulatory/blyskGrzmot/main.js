@@ -16,5 +16,5 @@ function grzmot(){
     clearInterval(countdown)
     let time = sec + (milisec*0.1)
     let distance = Math.round((340.3*time)/10)/100
-    document.getElementById("timer").innerHTML = `Piorun uderzył ok. ${distance}km stąd.` 
+    document.getElementById("timer").innerHTML = `Piorun uderzył około ${distance}km stąd.` 
 }
