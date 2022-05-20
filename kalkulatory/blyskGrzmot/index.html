@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odległość pioruna</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #timer{
+            width: 85vmin;
+            padding: 2.5vmin;
+            border: 5px dashed lightskyblue;
+            font-size: xx-large;
+            border-radius: 2vmin;
+            text-align: center;
+            margin: 2.5vmin;
+        }
+        button{
+            width: 45vmin;
+            height: 20vmin;
+            font-size: 10vmin;
+        }
+        td{
+            text-align: center;
+            width: 50vmin;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">Kliknij "Błysk" gdy ujrzysz błysk, oraz "grzmot" gdy usłyszysz grzmot</div>
+    <table>
+        <tr>
+            <td>
+                <button id="blsyk" onclick="blysk()">⚡</button></td><td><button id="grzmot" onclick="grzmot()">💥</button>
+            </td>
+        </tr>
+        <tr><td>Błysk</td><td>Grzmot</td></tr>
+    </table>
+    <script src="./main.js"></script>
+</body>
+</html>
