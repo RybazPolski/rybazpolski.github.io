@@ -1,4 +1,4 @@
-var countdown, sec, milisec 
+var countdown, sec=0, milisec=0 
 function blysk() {
     clearInterval(countdown)
     sec=0
