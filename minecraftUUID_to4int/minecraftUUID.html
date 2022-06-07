@@ -48,7 +48,6 @@
                     }else{
                         if(playerData.offline&&!playerData.uuid){
                             result.name = `<span style='font-weight:400'>OfflinePlayer:</span>${result.name.substring(14)}`
-                            console.log(result.name)
                         }
                         document.getElementById("result").innerHTML = `<h2>${result.name}<h2>`
                         document.getElementById("result").innerHTML += `<strong>UUID:</strong> ${result.uuid}<br>`
