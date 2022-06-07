@@ -24,7 +24,6 @@
             $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
             // echo bin2hex($data);
             $uuid = createJavaUuid(bin2hex($data));
-            echo $uuid;
             $name = 'OfflinePlayer:'.$_GET['nickname'];
             
 
