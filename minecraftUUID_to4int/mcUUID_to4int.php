@@ -51,7 +51,7 @@
             $response = json_decode($response, true); //because of true, it's in an array
             if($response==null){
                 echo json_encode([
-                    'error' => 'Online player not found!'
+                    'error' => 'Premium player not found!'
                 ]);
                 exit();
             }else{

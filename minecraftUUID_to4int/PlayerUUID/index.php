@@ -37,7 +37,7 @@
             }
 
             $.ajax({
-                url: "./mcUUID_to4int.php",
+                url: "../mcUUID_to4int.php",
                 type: "GET",
                 data: playerData,
                 success: function (data) {
