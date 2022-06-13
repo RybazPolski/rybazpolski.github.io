@@ -27,6 +27,10 @@ All of them made with the flow of an idea or the need to make something easier f
 [code](./gry/tosiaTheGame) and [effect](https://rybazpolski.github.io/gry/tosiaTheGame)
 > Simple cross the road game made with jQuery
 ---
+- **Flash and bang**
+[code](./kalkulatory/blyskGrzmot/) and [effect](https://rybazpolski.github.io/kalkulatory/blyskGrzmot/)  
+> Measure the distance of a lightning strike from the flash and sound
+---
 - **Facebook auto-poke**  
 [code](./skrypty) and [effect](https://rybazpolski.github.io/skrypty/bookmarkScripts.html)
 > Facebook poke cheat 👉
