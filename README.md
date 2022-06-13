@@ -3,6 +3,8 @@ My own projects, not for school, just for fun.
 All of them made with the flow of an idea or the need to make something easier for myself and maybe others.
 
 ## Featured - the ones I am the most proud of :)
+###### (Files below are mostly in Polish)
+---
 - **Ideas scratch-card** *(with backend)*  
 [code](./ideasFromHeart) and [effect](https://polishfish.pl/ideasFromHeartCopy)  
 ---
