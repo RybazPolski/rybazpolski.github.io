@@ -1,8 +1,10 @@
 # rybazpolski.github.io
 My own projects, not for school, just for fun.
-All of them made with the flow of an idea or the need to make something easier for yourself.
+All of them made with the flow of an idea or the need to make something easier for myself and maybe others.
 
 ## Featured - the ones I am the most proud of :)
+###### (Files below are mostly in Polish)
+---
 - **Ideas scratch-card** *(with backend)*  
 [code](./ideasFromHeart) and [effect](https://polishfish.pl/ideasFromHeartCopy)  
 ---
@@ -24,6 +26,10 @@ All of them made with the flow of an idea or the need to make something easier f
 - **Tosia the game**  
 [code](./gry/tosiaTheGame) and [effect](https://rybazpolski.github.io/gry/tosiaTheGame)
 > Simple cross the road game made with jQuery
+---
+- **Flash and bang**
+[code](./kalkulatory/blyskGrzmot/) and [effect](https://rybazpolski.github.io/kalkulatory/blyskGrzmot/)  
+> Measure the distance of a lightning strike from the flash and sound
 ---
 - **Facebook auto-poke**  
 [code](./skrypty) and [effect](https://rybazpolski.github.io/skrypty/bookmarkScripts.html)
