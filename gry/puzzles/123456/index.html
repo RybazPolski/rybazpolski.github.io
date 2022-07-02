@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one two three four five six</title>
+    <style>
+        *{
+            font-family: consolas;
+        }
+    </style>
+</head>
+<body>
+    <h1>password is one two three four five six</h1><br>
+    <input type="password" id="pass"><button onclick="showhide(this)">show password</button> <button onclick="check()">confirm</button>
+    <div id="result" style="color:red;">enter password</div>
+    <script>
+        String.prototype.hashCode = function() {
+            var hash = 0, i, chr;
+            if (this.length === 0) return hash;
+            for (i = 0; i < this.length; i++) {
+                chr   = this.charCodeAt(i);
+                hash  = ((hash << 5) - hash) + chr;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash;
+        };
+        // ze to niby ze stackoverflow...? skadze...
+        // i nie sprawdzisz hasla chyba ze mi kod hasha odwrocisz... czy cos idk
+        
+        function showhide(e){
+            var pwd = document.getElementById('pass')
+            pwd.type = pwd.type=="password"?"text":"password"
+            e.innerHTML=e.innerHTML=="show password"?"hide password":"show password"
+        }
+        function check(){
+            var pwd = document.getElementById('pass').value.replace(" ","").hashCode()
+            document.getElementById('result').innerHTML=pwd==699213748?"access granted":"wrong password"
+            document.getElementById('result').style.color=pwd==699213748?"green":"red"
+        }
+    </script>
+</body>
+</html>
