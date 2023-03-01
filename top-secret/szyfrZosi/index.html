@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szyfr Zosi</title>
+    <style>
+        /* #output{
+            background-color: white;
+            border-color: black;
+            color: black;
+            border-width: 1px;
+        } */
+    </style>
+</head>
+<body>
+
+    <input type="text" id="input" onchange="doSth(this)"> => <input type="tex" id="output"> <br>
+    <input type="radio" name="mode" checked id="m1" onchange="doSth(document.querySelector('#input'))"> Szyfruj
+    <input type="radio" name="mode" id="m2" onchange="doSth(document.querySelector('#input'))"> Deszyfruj <br>
+    <div id="encryptOptions">
+        <i style="color:gray">Styl kropki:</i><br>
+        <input type="radio" name="dot" checked id="d1" onchange="doSth(document.querySelector('#input'))"> . <br>
+        <input type="radio" name="dot" id="d2" onchange="doSth(document.querySelector('#input'))"> •
+    </div>
+    <footer><h6>*Disclaimer: Szyfr działa tylko dla alfabetu łacińskiego. Nie rozróżnia również "i" od "j"</h6></footer>
+</body> 
+
+<script>
+    const key = [["A", "B", "C", "D", "E"], ["F", "G", "H", "IJ", "K"], ["L", "M", "N", "O", "P"], ["Q", "R", "S", "T", "U"], ["V", "W", "X", "Y", "Z"]]
+
+
+    getRowCol = (letter)=>{
+        for(let i=0; i<key.length; i++){
+            for(let j=0; j<key[i].length; j++){
+                if(key[i][j].includes(letter)){
+                    return new Array(i, j)
+                }
+            }
+        }
+        return null
+    }
+
+    encrypt = (s)=>{
+        
+        let dotConf = document.querySelector(`#d2`).checked? "•" : "."; 
+        
+
+        let cipher = new Array()
+
+        for(const letter of s){
+            let rowCol = getRowCol(letter.toUpperCase())
+            if(rowCol!=null){
+                let dots = ""
+                for(let i = 0; i<=rowCol[0]; i++){
+                    dots +=dotConf
+                }
+                cipher.push(dots)
+                dots=""
+                for(let i = 0; i<=rowCol[1]; i++){
+                    dots+=dotConf
+                }
+                cipher.push(dots)
+            }
+        }        
+        return cipher.join(" ");
+    } 
+
+    decrypt = (s)=>{
+
+        const dots = s.split(" ")
+        console.log(s)
+        console.log(dots)
+        
+        let decipher = ""
+        for(let i = 0; i<dots.length; i++){
+            decipher+=key[dots[i].length-1][dots[++i].length-1][0]
+        }
+        return decipher 
+    }
+
+    doSth = (e)=>{
+        let res = ""
+        if(document.querySelector(`#m1`).checked){
+            document.querySelector(`#encryptOptions`).style.display = "block"
+            res = encrypt(e.value)
+        }else if(document.querySelector(`#m2`).checked){
+            document.querySelector(`#encryptOptions`).style.display = "none"
+            res = decrypt(e.value)
+        }
+        document.querySelector(`#output`).value = res
+    }
+
+</script>
+
+</html>
